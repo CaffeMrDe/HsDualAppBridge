@@ -1,3 +1,6 @@
 [submodule "rubik_cube_solve"]
 	path = rubik_cube_solve
 	url = https://github.com/StoneRobot/rubik_cube_solve.git
+[submodule "logWithQt"]
+	path = logWithQt
+	url = https://github.com/CaffeMrDe/logWithQt.git
