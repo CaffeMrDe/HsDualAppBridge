@@ -10,6 +10,7 @@
 svmDetect::svmDetect(NodeHandle n)
 {
     mNodeHandle = n;
+	fileNum = 0;
 }
 
 svmDetect::~svmDetect()
@@ -34,7 +35,7 @@ vector<char> svmDetect::getResult()
 	int read_order[6] = {4, 3, 0, 5, 2, 1};
 	for ( int i = 0; i < 6; i++ )
 	{
-		Mat img_cube = cv::imread("/home/xiaohuihui/catkin_ws/src/cube/photo/" + to_string(read_order[i]) + ".jpg");
+		Mat img_cube = cv::imread("/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo" + to_string(read_order[i]) + ".jpg");
         vector<char> singleface_result( svmDetect::detection(img_cube, label));
 		for ( size_t j = 0; j <  singleface_result.size(); ++j)
 		   totoal_result.push_back(singleface_result[j]);
@@ -57,7 +58,7 @@ void svmDetect::printResult()
 	int read_order[6] = {4, 3, 0, 5, 2, 1};
 	for ( int i = 0; i < 6; i++ )
 	{
-		Mat img_cube = cv::imread("/home/xiaohuihui/catkin_ws/src/cube/photo/" + to_string(read_order[i]) + ".jpg");
+		Mat img_cube = cv::imread("/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo" + to_string(read_order[i]) + ".jpg");
         vector<char> singleface_result( svmDetect::detection(img_cube, label));
 		for ( size_t j = 0; j <  singleface_result.size(); ++j)
 		   totoal_result.push_back(singleface_result[j]);
@@ -289,16 +290,16 @@ vector<char> svmDetect::establish_benchmark()
 
 
 //拍照服务回调函数
-bool svmDetect::takephoto_server_Callback(cube::TakePhoto::Request &req, cube::TakePhoto::Response &res)
+bool svmDetect::takephoto_server_Callback(cubeParse::TakePhoto::Request &req, cubeParse::TakePhoto::Response &res)
 {
    cout << "taking photo..." << endl;
    image_transport::ImageTransport it(mNodeHandle);
-   Imgsub  = it.subscribe("camera_base/image_row", 1, &svmDetect::ImageSubscribeCallback, this);
+   Imgsub  = it.subscribe("/camera_base/color/image_row", 1, &svmDetect::ImageSubscribeCallback, this);
    return true;
 }
 
 //识别魔方颜色服务回调函数
-bool svmDetect::detection_server_Callback(cube::Detection::Request &req, cube::Detection::Response &res)
+bool svmDetect::detection_server_Callback(cubeParse::Detection::Request &req, cubeParse::Detection::Response &res)
 {
 	cout << "cube color detecting...." << endl;
 	svmDetect::printResult();
@@ -308,12 +309,14 @@ bool svmDetect::detection_server_Callback(cube::Detection::Request &req, cube::D
 //订阅相机话题回调函数
 void  svmDetect::ImageSubscribeCallback(const sensor_msgs::ImageConstPtr & msg)
 {
+    Imgsub.shutdown();
+
 	try
 	{
 		std::stringstream stream1;
 		std::stringstream stream2;
 		stream1 << "Goal CubeImage" << fileNum << ".jpg";
-		stream2 << "/home/xiaohuihui/catkin_ws/src/cube/photo" << fileNum << ".jpg";
+		stream2 << "/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo" << fileNum << ".jpg";
 		std::string filename1 = stream1.str();
 		std::string filename2 = stream2.str();
 		cv::imwrite(filename2, cv_bridge::toCvShare(msg)->image);

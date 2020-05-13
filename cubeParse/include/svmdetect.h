@@ -20,8 +20,8 @@
 #include <std_msgs/String.h>
 #include <std_msgs/Bool.h>
 
-#include <cube/TakePhoto.h>
-#include <cube/Detection.h>
+#include <cubeParse/TakePhoto.h>
+#include <cubeParse/Detection.h>
 
 using namespace std;
 using namespace cv;
@@ -111,13 +111,13 @@ class svmDetect
         * @brief  拍照服务的回调函数,调用订阅相机彩色照片的回调函数
         * @return  拍照成功返回true, 拍照失败返回false
         */
-        bool takephoto_server_Callback(cube::TakePhoto::Request &req, cube::TakePhoto::Response &res);
+        bool takephoto_server_Callback(cubeParse::TakePhoto::Request &req, cubeParse::TakePhoto::Response &res);
 
         /**
         * @brief  订阅相机彩色照片的回调函数
         * @return  保存图片到本地
         */
-        bool detection_server_Callback(cube::Detection::Request &req, cube::Detection::Response &res);
+        bool detection_server_Callback(cubeParse::Detection::Request &req, cubeParse::Detection::Response &res);
 
         /**
         * @brief  订阅相机彩色照片的回调函数

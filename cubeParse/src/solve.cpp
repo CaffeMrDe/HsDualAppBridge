@@ -13,6 +13,7 @@ Solve::~Solve()
 
 void Solve::start()
 {
+     
      solution_pub = nh.advertise<std_msgs::Int8MultiArray>("cube_solution", 1000);
      solvecubeServer = nh.advertiseService(SOLVE_SERVER_NAME, &Solve::solvecube_server_Callback, this);
 }
@@ -31,7 +32,7 @@ vector<int> Solve::operation()
 }
 
 //解算魔方服务回调函数
-bool Solve::solvecube_server_Callback(cube::SolveCube::Request &req, cube::SolveCube::Response &res)
+bool Solve::solvecube_server_Callback(cubeParse::SolveCube::Request &req, cubeParse::SolveCube::Response &res)
 {
     std_msgs::Int8MultiArray data;
     cout << "solving cube..."<< endl;

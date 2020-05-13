@@ -10,7 +10,7 @@
 #include <iostream>
 
 
-#include <cube/SolveCube.h>
+#include <cubeParse/SolveCube.h>
 
 using namespace std;
 using namespace cv;
@@ -45,7 +45,7 @@ class Solve
        /**
         * @brief 解算魔方服务回调函数
         */
-       bool solvecube_server_Callback(cube::SolveCube::Request &req, cube::SolveCube::Response &res);
+       bool solvecube_server_Callback(cubeParse::SolveCube::Request &req, cubeParse::SolveCube::Response &res);
       
        /**
         * @brief 各项服务的实例
