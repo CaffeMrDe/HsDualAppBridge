@@ -31,12 +31,13 @@
 #include "std_msgs/UInt8MultiArray.h"
 #include "std_msgs/UInt16MultiArray.h"
 #include "roscpp_tutorials/TwoInts.h"
-#include "rb_srvs/rb_DoubleBool.h"
-#include "rb_srvs/rb_ArrayAndBool.h"
-#include "logClass.h"
+#include "rb_ui/rb_ArrayAndBool.h"
+#include "rb_ui/rb_DoubleBool.h"
+#include "include/log4cplus/logClass.h"
 using namespace std;
 
 class MainWindow: public QObject {
+    Q_OBJECT
 public:
     //ros节点
     ros::NodeHandle* Node;
@@ -145,6 +146,11 @@ public:
     void callback_rbConnStatus_subscriber(std_msgs::UInt8MultiArray data_msg);
     void callback_rbErrStatus_subscriber(std_msgs::UInt16MultiArray data_msg);
     void callback_camera_subscriber();
+signals:
+    void emitTextControl(QString text) const;
+
+private slots:
+    void displayTextControl(QString text);
 
 };
 

@@ -1,5 +1,6 @@
+#include <rb_ui/rb_DoubleBool.h>
 #include "MainWindow.h"
-
+#include "logmanager.h"
 void MainWindow::setupUi(ros::NodeHandle* node) {
     Node=node;
     //创建发布者/订阅者
@@ -10,17 +11,18 @@ void MainWindow::setupUi(ros::NodeHandle* node) {
     rbErrStatus_subscriber=Node->subscribe<std_msgs::UInt16MultiArray>("/Rb_errStatus", 1000,&MainWindow::callback_rbErrStatus_subscriber,this);
 
 //  camera_subscriber=Node->subscribe<std_msgs::String>("", 1000,&MainWindow::callback_camera_subscriber, this));
-    rbGrepSetCommand_client = Node->serviceClient<rb_srvs::rb_ArrayAndBool>("/Rb_grepSetCommand");
-    rbConnCommand_client = Node->serviceClient<rb_srvs::rb_DoubleBool>("/Rb_coonCommand");
-    rbRunCommand_client = Node->serviceClient<rb_srvs::rb_DoubleBool>("/Rb_runCommand");
-    MagicGetDataCommand_client = Node->serviceClient<rb_srvs::rb_DoubleBool>("/MagicGetDataCommand");
-    MagicSolveCommand_client= Node->serviceClient<rb_srvs::rb_DoubleBool>("/MagicRunSolveCommand");
-    MagicRunSolveCommand_client = Node->serviceClient<rb_srvs::rb_DoubleBool>("/MagicRunSolveCommand");
-
-    QMainWindow* w =new QMainWindow();
+    rbGrepSetCommand_client = Node->serviceClient<rb_ui::rb_ArrayAndBool>("/Rb_grepSetCommand");
+    rbConnCommand_client = Node->serviceClient<rb_ui::rb_DoubleBool>("/Rb_coonCommand");
+    rbRunCommand_client = Node->serviceClient<rb_ui::rb_DoubleBool>("/Rb_runCommand");
+    MagicGetDataCommand_client = Node->serviceClient<rb_ui::rb_DoubleBool>("/MagicGetDataCommand");
+    MagicSolveCommand_client= Node->serviceClient<rb_ui::rb_DoubleBool>("/MagicRunSolveCommand");
+    MagicRunSolveCommand_client = Node->serviceClient<rb_ui::rb_DoubleBool>("/MagicRunSolveCommand");
+    QMainWindow * w =new QMainWindow();
     initUi(w);
     retranslateUi(w);
     signalAndSlot();
+
+
 }
 
 
@@ -28,9 +30,9 @@ void MainWindow::setupUi(ros::NodeHandle* node) {
 
 
 void MainWindow::initUi(QMainWindow *MainWindow) {
-    if (MainWindow->objectName().isEmpty())
-        MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-    MainWindow->resize(967, 645);
+//    if (MainWindow->objectName().isEmpty())
+//        MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
+//    MainWindow->resize(967, 645);
     centralWidget = new QWidget(MainWindow);
     centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
     verticalLayout_2 = new QVBoxLayout(centralWidget);
@@ -291,7 +293,7 @@ void MainWindow::initUi(QMainWindow *MainWindow) {
     verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
     plainTextEdit = new QPlainTextEdit(tab_5);
     plainTextEdit->setObjectName(QString::fromUtf8("plainTextEdit"));
-
+    plainTextEdit->document()->setMaximumBlockCount(10000);
     verticalLayout_13->addWidget(plainTextEdit);
 
 
@@ -420,10 +422,10 @@ void MainWindow::onUpdate() {
 
 void MainWindow::signalAndSlot() {
 
-    updateTimer = new QTimer(this);
-    updateTimer->setInterval(1);
-    updateTimer->start();
-    QObject::connect(updateTimer, &QTimer::timeout, this, &MainWindow::onUpdate);
+//    updateTimer = new QTimer(this);
+//    updateTimer->setInterval(1);
+//    updateTimer->start();
+    //QObject::connect(updateTimer, &QTimer::timeout, this, &MainWindow::onUpdate);
 
     //设备连接
     QObject::connect(btn_rbConn,&QPushButton::clicked,this,&MainWindow::dev_connect);
@@ -451,11 +453,16 @@ void MainWindow::signalAndSlot() {
     QObject::connect(btn_SatetyRb1Stop,&QPushButton::clicked,this,&MainWindow::safety_rob1Stop);
     //机器人2停止
     QObject::connect(btn_SatetyRb2Stop,&QPushButton::clicked,this,&MainWindow::safety_rob2Stop);
+
+    QObject::connect(this, &MainWindow::emitTextControl,this, &MainWindow::displayTextControl);
+
 }
 
 void MainWindow::dev_connect() {
+    LOG("cube-202025")->logInfoMessage("CUBE");
+    LOG("name")->logInfoMessage("CUBE");
     cout<<"点击了设备连接按钮"<<endl;
-    rb_srvs::rb_DoubleBool data_srvs;
+    rb_ui::rb_DoubleBool data_srvs;
     data_srvs.request.request=true;
     rbConnCommand_client.call(data_srvs);
     if(data_srvs.response.respond){
@@ -471,13 +478,13 @@ void MainWindow::rviz_statup() {
 
 void MainWindow::run_statup() {
     cout<<"点击了运行启动按钮"<<endl;
-    rb_srvs::rb_DoubleBool data_srvs;
+    rb_ui::rb_DoubleBool data_srvs;
     data_srvs.request.request=true;
     rbRunCommand_client.call(data_srvs);
     if(data_srvs.response.respond){
-        logClass::WriteLog(logClass::logLevel::normal,"启动成功!");
+//        logClass::WriteLog(logClass::logLevel::normal,"启动成功!");
     }
-    logClass::WriteLog(logClass::logLevel::normal,"启动成功!");
+//    logClass::WriteLog(logClass::logLevel::normal,"启动成功!");
 }
 
 void MainWindow::run_stop() {
@@ -489,7 +496,7 @@ void MainWindow::run_stop() {
 
 void MainWindow::magicCube_get() {
     cout<<"点击了采集魔方数据按钮"<<endl;
-    rb_srvs::rb_DoubleBool data_srvs;
+    rb_ui::rb_DoubleBool data_srvs;
     data_srvs.request.request=true;
     MagicGetDataCommand_client.call(data_srvs);
     if(data_srvs.response.respond){
@@ -499,7 +506,7 @@ void MainWindow::magicCube_get() {
 
 void MainWindow::magicCube_solve() {
     cout<<"点击了解算魔方数据按钮"<<endl;
-    rb_srvs::rb_DoubleBool data_srvs;
+    rb_ui::rb_DoubleBool data_srvs;
     data_srvs.request.request=true;
     MagicSolveCommand_client.call(data_srvs);
     if(data_srvs.response.respond){
@@ -509,7 +516,7 @@ void MainWindow::magicCube_solve() {
 
 void MainWindow::magicCube_execute() {
     cout<<"点击了执行解算魔方数据按钮"<<endl;
-    rb_srvs::rb_DoubleBool data_srvs;
+    rb_ui::rb_DoubleBool data_srvs;
     data_srvs.request.request=true;
     MagicRunSolveCommand_client.call(data_srvs);
     if(data_srvs.response.respond){
@@ -522,7 +529,7 @@ void MainWindow::robot_grab() {
     int index1=comboBox->currentIndex();
     int index2=comboBox_2->currentIndex();
     int index3=comboBox_3->currentIndex();
-    rb_srvs::rb_ArrayAndBool data_msg;
+    rb_ui::rb_ArrayAndBool data_msg;
     data_msg.request.data[0]=index1;
     data_msg.request.data[1]=index2;
     data_msg.request.data[2]=index3;
@@ -563,11 +570,12 @@ void MainWindow::callback_rbConnStatus_subscriber(std_msgs::UInt8MultiArray data
 void MainWindow::callback_rbErrStatus_subscriber(std_msgs::UInt16MultiArray data_msg) {
     if(data_msg.data[0]==1){
         cout<<"机器人1故障"<<endl;
-        logClass::WriteLog(logClass::err,"机器人1故障");
+//        logClass::WriteLog(logClass::err,"机器人1故障");
+        LOG("robot")->logErrorMessage("机器人1故障");
     }
     if(data_msg.data[1]==1){
         cout<<"机器人2故障"<<endl;
-        logClass::WriteLog(logClass::err,"机器人2故障");
+//        logClass::WriteLog(logClass::err,"机器人2故障");
     }
 }
 
@@ -604,4 +612,7 @@ void MainWindow::clearRecord() {
 
 }
 
+void MainWindow::displayTextControl(QString text) {
+    plainTextEdit->appendPlainText(text);
+}
 

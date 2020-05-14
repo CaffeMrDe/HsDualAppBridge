@@ -1,1 +1,0 @@
-add_library(utils logClass.cpp MainWindow.cpp)
