@@ -35,7 +35,7 @@ vector<char> svmDetect::getResult()
 	int read_order[6] = {4, 3, 0, 5, 2, 1};
 	for ( int i = 0; i < 6; i++ )
 	{
-		Mat img_cube = cv::imread("/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo" + to_string(read_order[i]) + ".jpg");
+		Mat img_cube = cv::imread("/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo/cube_" + to_string(read_order[i]) + ".png");
         vector<char> singleface_result( svmDetect::detection(img_cube, label));
 		for ( size_t j = 0; j <  singleface_result.size(); ++j)
 		   totoal_result.push_back(singleface_result[j]);
@@ -52,22 +52,44 @@ vector<char> svmDetect::getResult()
 
 void svmDetect::printResult()
 {
+	cout << "开始进行颜色识别" << endl;
 	vector<char> label = svmDetect::establish_benchmark();
-	vector<char> totoal_result;
-	//按照算法要求的U、R、F、D、L、B的顺序读取图片得出颜色序列
-	int read_order[6] = {4, 3, 0, 5, 2, 1};
+	int count = 0;
+	string facelet_name[6] = {"魔方前面", "魔方背面", "魔方左面", "魔方右面", "魔方顶面", "魔方底面"};
 	for ( int i = 0; i < 6; i++ )
 	{
-		Mat img_cube = cv::imread("/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo" + to_string(read_order[i]) + ".jpg");
-        vector<char> singleface_result( svmDetect::detection(img_cube, label));
-		for ( size_t j = 0; j <  singleface_result.size(); ++j)
-		   totoal_result.push_back(singleface_result[j]);
-        //singleface_result.clear();
-		vector<char>().swap(singleface_result);
+		Mat img_cube = cv::imread("/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo/cube_" + to_string(i) + ".png");
+        cv::Point cen_point;
+		int cube_interval = 250;
+		int ROI_inverval = 20;
+		cen_point = svmDetect::find_central_point(img_cube);
+		//cen_point.x = 932;
+		//cen_point.y = 578;
+		int start_x = cen_point.x - cube_interval;
+		start_x -= 10;
+		int start_y = cen_point.y - cube_interval;
+		start_y -= 10;
+		int current_x = 0;
+		int current_y = 0;
+		cout << facelet_name[count] << ": " ;
+		for (int i = 0; i < 3; i++)
+		{
+			//Capture the ROI form the left_top of the cube
+			current_y = start_y + i * cube_interval;
+			for (int j = 0; j < 3; j++)
+			{
+				current_x = start_x + j * cube_interval;
+				cv::Rect rect(current_x, current_y, 20, 20);
+				cv::Mat ROI = img_cube(rect);
+				//Use the SVM
+				std::string color_result = svmDetect::SVM_Color(ROI);
+				cout << color_result << " ";
+			}
+		}
+        
+		count++;
+		cout << endl;
 	}
-	
-	for ( size_t k = 0; k <  totoal_result[k]; k++)
-	    std::cout <<  totoal_result[k] ;
 }
 
 
@@ -257,7 +279,7 @@ vector<char> svmDetect::establish_benchmark()
 
 	for (int i = 0; i < 6; i++)
 	{
-		Mat src = imread("F:/picture/cube/test/cube_" + to_string(i) + ".png");
+		Mat src = imread("/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo/cube_" + to_string(i) + ".png");
 		//cout << "加载成功！" << endl;
 		cv::Point cen_point = find_central_point(src);
 		cen_point.x = 932;
@@ -277,11 +299,15 @@ vector<char> svmDetect::establish_benchmark()
 			live_label[4] = facelet_label[i];
 		if (outcoming == "white")
 			live_label[5] = facelet_label[i];
+		outcoming.clear();
 	}
 
+	
+    cout << "魔法基准面信息为:" << endl;
     for (int j = 0; j < 6; j++)
 	{
 		live_facelet_label.push_back(live_label[j]);
+		cout << live_facelet_label[j];
 	}
 
 	return live_facelet_label;
@@ -294,7 +320,9 @@ bool svmDetect::takephoto_server_Callback(cubeParse::TakePhoto::Request &req, cu
 {
    cout << "taking photo..." << endl;
    image_transport::ImageTransport it(mNodeHandle);
-   Imgsub  = it.subscribe("/camera_base/color/image_row", 1, &svmDetect::ImageSubscribeCallback, this);
+   Imgsub  = it.subscribe("/camera_base/color/image_raw", 1, &svmDetect::ImageSubscribeCallback, this);
+   cout << "Succeed in taking photo" << endl;
+   //Imgsub.shutdown();
    return true;
 }
 
@@ -309,25 +337,31 @@ bool svmDetect::detection_server_Callback(cubeParse::Detection::Request &req, cu
 //订阅相机话题回调函数
 void  svmDetect::ImageSubscribeCallback(const sensor_msgs::ImageConstPtr & msg)
 {
-    Imgsub.shutdown();
-
+    cout << "进入回调函数成功!" << endl;
 	try
 	{
-		std::stringstream stream1;
-		std::stringstream stream2;
+		cout << "保存照片中..." << endl;
 		stream1 << "Goal CubeImage" << fileNum << ".jpg";
-		stream2 << "/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo" << fileNum << ".jpg";
-		std::string filename1 = stream1.str();
-		std::string filename2 = stream2.str();
-		cv::imwrite(filename2, cv_bridge::toCvShare(msg)->image);
+		stream2 << "/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo/cube_" << std::to_string(fileNum) << ".png";
+		filename1 = stream1.str();
+		filename2 = stream2.str();
+		cv::Mat temp = cv_bridge::toCvShare(msg)->image.clone();
+		cvtColor(temp,temp,cv::COLOR_BGR2RGB);
+		cv::imwrite(filename2, temp);
 		fileNum++;
 		if( fileNum == 6)
 		    fileNum = 0;
 		cout << filename1 << " had saved." << endl;
+           
+		Imgsub.shutdown();
+		stream1.str("");
+		stream2.str("");
 	}
+
 	catch (cv_bridge::Exception& e)
 	{
 		ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
+		cout <<  "拍照失败" << endl;
 	}
 
 }

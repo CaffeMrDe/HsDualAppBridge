@@ -10,7 +10,7 @@
 
 cubeSolve::cubeSolve()
 {
-	cout << "solving the cube......" << endl;
+	//cout << "solving the cube......" << endl;
 }
 
 cubeSolve::~cubeSolve()

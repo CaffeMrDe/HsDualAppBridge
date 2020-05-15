@@ -20,4 +20,5 @@
 !**/*.srv
 !**/*.txt
 !**/*.xml
+*.png
 build/

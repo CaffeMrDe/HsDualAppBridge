@@ -27,7 +27,11 @@ vector<int> Solve::operation()
       for(size_t i; i < color_answer_vector.size(); ++i)
          stream << color_answer_vector[i];
       std::string color_answer_string = stream.str();
+      cout << "魔方颜色序列为: " << endl;
+      cout << color_answer_string << endl;
       vector<int> motion_answer( t.settlement( color_answer_string) );
+
+      stream.str("");
       return motion_answer;
 }
 

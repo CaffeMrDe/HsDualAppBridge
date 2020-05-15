@@ -144,6 +144,14 @@ class svmDetect
         * @brief mNodeHandle   ROS节点
         */
         ros::NodeHandle mNodeHandle;
+        
+        /**
+        * @brief 订阅相机节点照片参数  
+        */
+        std::stringstream stream1;
+		    std::stringstream stream2;
+        std::string filename1;
+        std::string filename2;
 
 };
 
