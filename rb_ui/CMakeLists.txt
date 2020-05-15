@@ -186,9 +186,10 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/rb_ui_node.cpp)
 #add_subdirectory(src/utils)
-link_directories(/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_ui/lib)
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib)
 add_executable(rb_ui src/rb_ui.cpp
         src/utils/MainWindow.cpp)
+#add_executable()
 target_link_libraries(
         rb_ui
         log4cplus
@@ -196,12 +197,12 @@ target_link_libraries(
         ${catkin_LIBRARIES}
         ${QT_LIBRARIES}
 )
-#add_executable(fortest src/fortest.cpp )
-#target_link_libraries(
-#        fortest
-#        ${catkin_LIBRARIES}
-#        ${QT_LIBRARIES}
-#)
+add_executable(fortest src/fortest.cpp )
+target_link_libraries(
+        fortest
+        ${catkin_LIBRARIES}
+        ${QT_LIBRARIES}
+)
 
 
 ## Rename C++ executable without prefix

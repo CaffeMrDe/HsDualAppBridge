@@ -19,12 +19,11 @@
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <QProcess>
 #include <QTimer>
+#include <QThread>
 #include <iostream>
-#include <ctime>
 #include <fstream>
-//#include <direct.h>
-//#include <unistd.h>
 #include "QDebug"
 #include "ros/ros.h"
 #include "std_msgs/Bool.h"
@@ -34,11 +33,31 @@
 #include "rb_ui/rb_ArrayAndBool.h"
 #include "rb_ui/rb_DoubleBool.h"
 #include "include/log4cplus/logClass.h"
+
+//#include "messagehandler.h"
 using namespace std;
 
-class MainWindow: public QObject {
+class  MainWindow;
+
+class qthreadForRos : public QThread{
+public:
+    MainWindow* m;
+    void (MainWindow::*f)();
+    void setParm(MainWindow* m,void (MainWindow::*f)()){
+        this->m=m;
+        this->f=f;
+    }
+    void run(){
+        (m->*f)();
+    }
+};
+
+class MainWindow: public QMainWindow {
     Q_OBJECT
 public:
+    MainWindow(ros::NodeHandle* node,QWidget* parent = Q_NULLPTR);
+    ~MainWindow();
+private:
     //ros节点
     ros::NodeHandle* Node;
     ros::Publisher rbStopCommand_publisher;//机器人停止命令
@@ -61,6 +80,7 @@ public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
+    QLabel *label_3;
     QHBoxLayout *horizontalLayout_3;
     QTabWidget *tabWidget;
     QWidget *tab;
@@ -119,15 +139,22 @@ public:
     QPushButton *btn_SatetyRb2Stop;
     QMenuBar *menuBar;
     QStatusBar *statusBar;
-
+    //子线程句柄
+    qthreadForRos *thread_forRbConn;//设备连接子线程
+    qthreadForRos *thread_forBeginRun;//开始运行子线程
+    qthreadForRos *thread_forGagicGetData;//采集魔方数据子线程
+    qthreadForRos *thread_forGagicSolve;//采集魔方数据子线程
+    qthreadForRos *thread_forGagicRunSolve;//执行魔方子线程
+    qthreadForRos *thread_forRbGrepSet;//机器人抓取子线程
+private:
+    bool flag_rbConnStatus;//机器人连接状态标志
+public:
     //UI流程
-    void setupUi(ros::NodeHandle* node);
     void initUi(QMainWindow *MainWindow);
     void retranslateUi(QMainWindow *MainWindow);
     //处理所有信号和槽函数
     void signalAndSlot();
     //槽函数
-    void onUpdate();//定时刷新
     void dev_connect();//按钮槽函数_设备连接槽函数
     void rviz_statup();//按钮槽函数_rviz启动
     void run_statup();//按钮槽函数_运行启动
@@ -141,11 +168,17 @@ public:
     void safety_rob2Stop();//按钮槽函数_机器人2停止
     void oputRecord();
     void clearRecord();
-
     //ros节点回调函数
     void callback_rbConnStatus_subscriber(std_msgs::UInt8MultiArray data_msg);
     void callback_rbErrStatus_subscriber(std_msgs::UInt16MultiArray data_msg);
     void callback_camera_subscriber();
+    //线程处理
+    void thread_rbConnCommand();
+    void thread_BeginRun();
+    void thread_GagicGetData();
+    void thread_GagicSolve();
+    void thread_GagicRunSolve();
+    void thread_RbGrepSet();
 signals:
     void emitTextControl(QString text) const;
 

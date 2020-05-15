@@ -3,6 +3,7 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="rb_ui" targetName="std_msgs_generate_messages_eus" />
+      <config projectName="rb_ui" targetName="fortest" />
       <config projectName="rb_ui" targetName="std_msgs_generate_messages_lisp" />
       <config projectName="rb_ui" targetName="roscpp_generate_messages_cpp" />
       <config projectName="rb_ui" targetName="rb_ui_genlisp" />
@@ -29,14 +30,14 @@
       <config projectName="rb_ui" targetName="rb_ui_generate_messages_nodejs" />
       <config projectName="rb_ui" targetName="roscpp_generate_messages_eus" />
       <config projectName="rb_ui" targetName="gtest" />
-      <config projectName="rb_ui" targetName="rb_ui" />
       <config projectName="rb_ui" targetName="rb_ui_generate_messages_lisp" />
+      <config projectName="rb_ui" targetName="rb_ui" />
       <config projectName="rb_ui" targetName="_rb_ui_generate_messages_check_deps_rb_ArrayAndBool" />
       <config projectName="rb_ui" targetName="roscpp_generate_messages_nodejs" />
       <config projectName="rb_ui" targetName="std_msgs_generate_messages_py" />
       <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_nodejs" />
-      <config projectName="rb_ui" targetName="rb_ui_gencpp" />
       <config projectName="rb_ui" targetName="gmock" />
+      <config projectName="rb_ui" targetName="rb_ui_gencpp" />
       <config projectName="rb_ui" targetName="rb_ui_genpy" />
       <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_eus" />
       <config projectName="rb_ui" targetName="rb_ui_generate_messages_eus" />
@@ -48,7 +49,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e2e2d99-ccc6-4274-bec1-38a9f03afc38" name="Default Changelist" comment="" />
+    <list default="true" id="4e2e2d99-ccc6-4274-bec1-38a9f03afc38" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logWithQt" beforeDir="false" afterPath="$PROJECT_DIR$/../logWithQt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/rb_ui/MainWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rb_ui/MainWindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rb_ui.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rb_ui.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/MainWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/MainWindow.cpp" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,14 +68,24 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectId" id="1bsWOhLv7hhQmnxqBjeHA7AjzHG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/photo" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/include/rb_ui" />
       <recent name="$PROJECT_DIR$/include/log4cplus" />
@@ -106,6 +125,11 @@
       </method>
     </configuration>
     <configuration name="doxygen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="doxygen" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fortest" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="fortest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="rb_ui" RUN_TARGET_NAME="fortest">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -281,6 +305,7 @@
       <item itemvalue="CMake Application.clean_test_results" />
       <item itemvalue="CMake Application.download_extra_data" />
       <item itemvalue="CMake Application.doxygen" />
+      <item itemvalue="CMake Application.fortest" />
       <item itemvalue="CMake Application.rb_ui" />
       <item itemvalue="CMake Application.rb_ui_gencpp" />
       <item itemvalue="CMake Application.rb_ui_generate_messages" />
@@ -332,11 +357,27 @@
       <workItem from="1589423449142" duration="1365000" />
       <workItem from="1589425630749" duration="786000" />
       <workItem from="1589429336386" duration="1299000" />
-      <workItem from="1589446199413" duration="5350000" />
+      <workItem from="1589446199413" duration="7621000" />
+      <workItem from="1589502522154" duration="21862000" />
+      <workItem from="1589531952441" duration="9929000" />
+      <workItem from="1589543417406" duration="3626000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

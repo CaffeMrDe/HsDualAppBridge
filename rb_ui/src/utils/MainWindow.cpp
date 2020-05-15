@@ -1,28 +1,25 @@
 #include <rb_ui/rb_DoubleBool.h>
 #include "MainWindow.h"
 #include "logmanager.h"
-void MainWindow::setupUi(ros::NodeHandle* node) {
-    Node=node;
+
+
+MainWindow::MainWindow(ros::NodeHandle *node, QWidget *parent):QMainWindow(parent),Node(node){
+    flag_rbConnStatus= false;
     //创建发布者/订阅者
     rbStopCommand_publisher= Node->advertise<std_msgs::Bool>("/Rb_stopCommand", 1000);
     SafetyStop_publisher=Node->advertise<std_msgs::Bool>("/Safety_stop", 1000);
-
-    rbConnStatus_subscriber=Node->subscribe<std_msgs::UInt8MultiArray>("/Rb_connStatus", 1000,&MainWindow::callback_rbConnStatus_subscriber,this);
+    rbConnStatus_subscriber=Node->subscribe<std_msgs::UInt8MultiArray>("/Rb_connStatus", 1,&MainWindow::callback_rbConnStatus_subscriber,this);
     rbErrStatus_subscriber=Node->subscribe<std_msgs::UInt16MultiArray>("/Rb_errStatus", 1000,&MainWindow::callback_rbErrStatus_subscriber,this);
-
 //  camera_subscriber=Node->subscribe<std_msgs::String>("", 1000,&MainWindow::callback_camera_subscriber, this));
     rbGrepSetCommand_client = Node->serviceClient<rb_ui::rb_ArrayAndBool>("/Rb_grepSetCommand");
-    rbConnCommand_client = Node->serviceClient<rb_ui::rb_DoubleBool>("/Rb_coonCommand");
+    rbConnCommand_client = Node->serviceClient<rb_ui::rb_DoubleBool>("/Rb_connCommand");
     rbRunCommand_client = Node->serviceClient<rb_ui::rb_DoubleBool>("/Rb_runCommand");
     MagicGetDataCommand_client = Node->serviceClient<rb_ui::rb_DoubleBool>("/MagicGetDataCommand");
     MagicSolveCommand_client= Node->serviceClient<rb_ui::rb_DoubleBool>("/MagicRunSolveCommand");
     MagicRunSolveCommand_client = Node->serviceClient<rb_ui::rb_DoubleBool>("/MagicRunSolveCommand");
-    QMainWindow * w =new QMainWindow();
-    initUi(w);
-    retranslateUi(w);
+    initUi(this);
+    retranslateUi(this);
     signalAndSlot();
-
-
 }
 
 
@@ -33,7 +30,7 @@ void MainWindow::initUi(QMainWindow *MainWindow) {
 //    if (MainWindow->objectName().isEmpty())
 //        MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
 //    MainWindow->resize(967, 645);
-    centralWidget = new QWidget(MainWindow);
+    centralWidget = new QWidget(this);
     centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
     verticalLayout_2 = new QVBoxLayout(centralWidget);
     verticalLayout_2->setSpacing(6);
@@ -53,10 +50,16 @@ void MainWindow::initUi(QMainWindow *MainWindow) {
     font.setItalic(false);
     font.setWeight(75);
     label->setFont(font);
-    label->setAlignment(Qt::AlignCenter);
+    label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+
+    label_3 = new QLabel(centralWidget);
+    label_3->setObjectName(QString::fromUtf8("label_3"));
+    label_3->setPixmap(QPixmap(QString::fromUtf8("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_ui/photo/logo.png")));
+    label_3->setScaledContents(false);
+    label_3->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+    horizontalLayout->addWidget(label_3);
 
     horizontalLayout->addWidget(label);
-
 
     verticalLayout->addLayout(horizontalLayout);
 
@@ -271,11 +274,7 @@ void MainWindow::initUi(QMainWindow *MainWindow) {
     btn_rbGrep->setObjectName(QString::fromUtf8("btn_rbGrep"));
 
     verticalLayout_9->addWidget(btn_rbGrep);
-
-
     horizontalLayout_9->addLayout(verticalLayout_9);
-
-
     horizontalLayout_10->addLayout(horizontalLayout_9);
 
     tabWidget->addTab(tab_4, QString());
@@ -354,6 +353,8 @@ void MainWindow::initUi(QMainWindow *MainWindow) {
     verticalLayout->setStretch(0, 1);
     verticalLayout->setStretch(1, 9);
 
+    horizontalLayout->setStretch(0, 1);
+    horizontalLayout->setStretch(1, 6);
     verticalLayout_2->addLayout(verticalLayout);
 
     MainWindow->setCentralWidget(centralWidget);
@@ -366,9 +367,7 @@ void MainWindow::initUi(QMainWindow *MainWindow) {
     MainWindow->setStatusBar(statusBar);
 
     retranslateUi(MainWindow);
-
     tabWidget->setCurrentIndex(0);
-    MainWindow->show();
     QMetaObject::connectSlotsByName(MainWindow);
 }
 
@@ -376,6 +375,7 @@ void MainWindow::initUi(QMainWindow *MainWindow) {
 void MainWindow::retranslateUi(QMainWindow *MainWindow) {
     {
     MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
+    label_3->setText(QString());
     label->setText(QApplication::translate("MainWindow", "\345\217\214\346\234\272\345\231\250\344\272\272\344\272\222\345\212\250\344\270\216\345\215\217\344\275\234\345\271\263\345\217\260", nullptr));
     checkBox_rb1CoonStatus->setText(QApplication::translate("MainWindow", "\346\234\272\345\231\250\344\272\2721\350\277\236\346\216\245\347\212\266\346\200\201", nullptr));
     checkBox_rb2CoonStatus->setText(QApplication::translate("MainWindow", "\346\234\272\345\231\250\344\272\2722\350\277\236\346\216\245\347\212\266\346\200\201", nullptr));
@@ -413,78 +413,78 @@ void MainWindow::retranslateUi(QMainWindow *MainWindow) {
     btn_SatetyRb1Stop->setText(QApplication::translate("MainWindow", "\346\234\272\345\231\250\344\272\2721\345\201\234\346\255\242", nullptr));
     btn_SatetyRb2Stop->setText(QApplication::translate("MainWindow", "\346\234\272\345\231\250\344\272\2722\345\201\234\346\255\242", nullptr));
     tabWidget->setTabText(tabWidget->indexOf(tab_6), QApplication::translate("MainWindow", "\345\256\211\345\205\250\347\225\214\351\235\242", nullptr));
-} // retranslateUi
+
+    } // retranslateUi
 }
 
-void MainWindow::onUpdate() {
-
-}
 
 void MainWindow::signalAndSlot() {
 
-//    updateTimer = new QTimer(this);
-//    updateTimer->setInterval(1);
-//    updateTimer->start();
-    //QObject::connect(updateTimer, &QTimer::timeout, this, &MainWindow::onUpdate);
-
     //设备连接
-    QObject::connect(btn_rbConn,&QPushButton::clicked,this,&MainWindow::dev_connect);
+    connect(btn_rbConn,&QPushButton::clicked,this,&MainWindow::dev_connect);
     //rviz启动
-    QObject::connect(btn_rvizRun,&QPushButton::clicked,this,&MainWindow::rviz_statup);
+    connect(btn_rvizRun,&QPushButton::clicked,this,&MainWindow::rviz_statup);
     //运行启动
-    QObject::connect(btn_beginRun,&QPushButton::clicked,this,&MainWindow::run_statup);
+    connect(btn_beginRun,&QPushButton::clicked,this,&MainWindow::run_statup);
     //运行停止
-    QObject::connect(btn_normalStop,&QPushButton::clicked,this,&MainWindow::run_stop);
+    connect(btn_normalStop,&QPushButton::clicked,this,&MainWindow::run_stop);
     //采集魔方数据
-    QObject::connect(btn_magicGetdata,&QPushButton::clicked,this,&MainWindow::magicCube_get);
+    connect(btn_magicGetdata,&QPushButton::clicked,this,&MainWindow::magicCube_get);
     //解算魔方数据
-    QObject::connect(btn_magicSolve,&QPushButton::clicked,this,&MainWindow::magicCube_solve);
+    connect(btn_magicSolve,&QPushButton::clicked,this,&MainWindow::magicCube_solve);
     //执行解算魔方数据
-    QObject::connect(btn_magicRunSolve,&QPushButton::clicked,this,&MainWindow::magicCube_execute);
+    connect(btn_magicRunSolve,&QPushButton::clicked,this,&MainWindow::magicCube_execute);
     //机器人抓取
-    QObject::connect(btn_rbGrep,&QPushButton::clicked,this,&MainWindow::robot_grab);
+    connect(btn_rbGrep,&QPushButton::clicked,this,&MainWindow::robot_grab);
     //导出日志
-    QObject::connect(btn_oputRecord,&QPushButton::clicked,this,&MainWindow::oputRecord);
+    connect(btn_oputRecord,&QPushButton::clicked,this,&MainWindow::oputRecord);
     //清除日志
-    QObject::connect(btn_clearRecord,&QPushButton::clicked,this,&MainWindow::clearRecord);
+    connect(btn_clearRecord,&QPushButton::clicked,this,&MainWindow::clearRecord);
     //系统停止
-    QObject::connect(btn_SatetyStop,&QPushButton::clicked,this,&MainWindow::safety_sysStop);
+    connect(btn_SatetyStop,&QPushButton::clicked,this,&MainWindow::safety_sysStop);
     //机器人1停止
-    QObject::connect(btn_SatetyRb1Stop,&QPushButton::clicked,this,&MainWindow::safety_rob1Stop);
+    connect(btn_SatetyRb1Stop,&QPushButton::clicked,this,&MainWindow::safety_rob1Stop);
     //机器人2停止
-    QObject::connect(btn_SatetyRb2Stop,&QPushButton::clicked,this,&MainWindow::safety_rob2Stop);
+    connect(btn_SatetyRb2Stop,&QPushButton::clicked,this,&MainWindow::safety_rob2Stop);
 
-    QObject::connect(this, &MainWindow::emitTextControl,this, &MainWindow::displayTextControl);
+    connect(this, &MainWindow::emitTextControl,this, &MainWindow::displayTextControl);
 
+    //给设备连接按钮事件开辟子线程
+    thread_forRbConn = new qthreadForRos();
+    thread_forRbConn->setParm(this,&MainWindow::thread_rbConnCommand);
+    //开始运行子线程
+    thread_forBeginRun= new qthreadForRos();
+    thread_forBeginRun->setParm(this,&MainWindow::thread_BeginRun);
+    //采集魔方数据子线程
+    thread_forGagicGetData= new qthreadForRos();
+    thread_forGagicGetData->setParm(this,&MainWindow::thread_GagicGetData);
+    //解算魔方子线程
+    thread_forGagicSolve= new qthreadForRos();
+    thread_forGagicSolve->setParm(this,&MainWindow::thread_GagicSolve);
+    //运行解算子线程
+    thread_forGagicRunSolve= new qthreadForRos();
+    thread_forGagicRunSolve->setParm(this,&MainWindow::thread_GagicRunSolve);
+    //机器人抓取子线程
+    thread_forRbGrepSet= new qthreadForRos();
+    thread_forRbGrepSet->setParm(this,&MainWindow::thread_RbGrepSet);
 }
 
 void MainWindow::dev_connect() {
-    LOG("cube-202025")->logInfoMessage("CUBE");
-    LOG("name")->logInfoMessage("CUBE");
     cout<<"点击了设备连接按钮"<<endl;
-    rb_ui::rb_DoubleBool data_srvs;
-    data_srvs.request.request=true;
-    rbConnCommand_client.call(data_srvs);
-    if(data_srvs.response.respond){
-        checkBox_rb1CoonStatus->setChecked(true);
-        checkBox_rb2CoonStatus->setChecked(true);
-    }
-
+    //    if(!flag_rbConnStatus){
+    thread_forRbConn->start();//把耗时操作放在子线程中避免堵塞主线程,多次调用start,若子线程未执行完,则自动拦截之后的请求,随便多次按.
+    //    }
 }
 
 void MainWindow::rviz_statup() {
+    QProcess *proc = new QProcess;
+    proc->start("rosrun rviz rviz");
     cout<<"点击了qviz启动按钮"<<endl;
 }
 
 void MainWindow::run_statup() {
     cout<<"点击了运行启动按钮"<<endl;
-    rb_ui::rb_DoubleBool data_srvs;
-    data_srvs.request.request=true;
-    rbRunCommand_client.call(data_srvs);
-    if(data_srvs.response.respond){
-//        logClass::WriteLog(logClass::logLevel::normal,"启动成功!");
-    }
-//    logClass::WriteLog(logClass::logLevel::normal,"启动成功!");
+    thread_forBeginRun->start();
 }
 
 void MainWindow::run_stop() {
@@ -496,48 +496,22 @@ void MainWindow::run_stop() {
 
 void MainWindow::magicCube_get() {
     cout<<"点击了采集魔方数据按钮"<<endl;
-    rb_ui::rb_DoubleBool data_srvs;
-    data_srvs.request.request=true;
-    MagicGetDataCommand_client.call(data_srvs);
-    if(data_srvs.response.respond){
-        cout<<"采集魔方数据成功"<<endl;
-    }
+    thread_forGagicGetData->start();
 }
 
 void MainWindow::magicCube_solve() {
     cout<<"点击了解算魔方数据按钮"<<endl;
-    rb_ui::rb_DoubleBool data_srvs;
-    data_srvs.request.request=true;
-    MagicSolveCommand_client.call(data_srvs);
-    if(data_srvs.response.respond){
-        cout<<"解算魔方数据成功"<<endl;
-    }
+    thread_forGagicSolve->start();
 }
 
 void MainWindow::magicCube_execute() {
     cout<<"点击了执行解算魔方数据按钮"<<endl;
-    rb_ui::rb_DoubleBool data_srvs;
-    data_srvs.request.request=true;
-    MagicRunSolveCommand_client.call(data_srvs);
-    if(data_srvs.response.respond){
-        cout<<"执行解算魔方数据成功"<<endl;
-    }
+    thread_forGagicRunSolve->start();
 }
 
 void MainWindow::robot_grab() {
     cout<<"点击了机器人抓取按钮"<<endl;
-    int index1=comboBox->currentIndex();
-    int index2=comboBox_2->currentIndex();
-    int index3=comboBox_3->currentIndex();
-    rb_ui::rb_ArrayAndBool data_msg;
-    data_msg.request.data[0]=index1;
-    data_msg.request.data[1]=index2;
-    data_msg.request.data[2]=index3;
-    rbGrepSetCommand_client.call(data_msg);
-    if(data_msg.response.respond){
-        cout<<"抓取成功"<<endl;
-    }
-
+    thread_forRbGrepSet->start();
 
 }
 
@@ -565,17 +539,23 @@ void MainWindow::callback_rbConnStatus_subscriber(std_msgs::UInt8MultiArray data
     } else{
         checkBox_rb2CoonStatus->setChecked(false);
     }
+    //两台机器人均连上了才表示连接标志成功
+    if(data_msg.data[0]==1&&data_msg.data[1]==1){
+        flag_rbConnStatus= true;
+        cout<<"接收到连接成功数据"<<endl;
+    } else{
+        flag_rbConnStatus= false;
+    }
 }
 
 void MainWindow::callback_rbErrStatus_subscriber(std_msgs::UInt16MultiArray data_msg) {
     if(data_msg.data[0]==1){
         cout<<"机器人1故障"<<endl;
-//        logClass::WriteLog(logClass::err,"机器人1故障");
-        LOG("robot")->logErrorMessage("机器人1故障");
+        LOG("Robot")->logErrorMessage("机器人1故障");
     }
     if(data_msg.data[1]==1){
         cout<<"机器人2故障"<<endl;
-//        logClass::WriteLog(logClass::err,"机器人2故障");
+        LOG("Robot")->logErrorMessage("机器人2故障");
     }
 }
 
@@ -604,15 +584,107 @@ void MainWindow::oputRecord() {
 
 void MainWindow::clearRecord() {
     plainTextEdit->clear();
-    fstream file("./robotLog.log");
-    if(file){
-        file.close();
-        remove("./robotLog.log");
-        }
-
 }
 
 void MainWindow::displayTextControl(QString text) {
     plainTextEdit->appendPlainText(text);
 }
+
+void MainWindow::thread_rbConnCommand() {
+    rb_ui::rb_DoubleBool data_srvs;
+    data_srvs.request.request=true;
+    if(rbConnCommand_client.call(data_srvs)){
+        if(data_srvs.response.respond){
+            cout<<"连接成功"<<endl;
+            checkBox_rb1CoonStatus->setChecked(true);
+            checkBox_rb2CoonStatus->setChecked(true);
+        }
+    } else{
+        LOG("Warning")->logErrorMessage("rbConnCommand_client接收消息失败!");
+        cout<<"rbConnCommand_client接收失败"<<endl;
+    }
+}
+
+void MainWindow::thread_BeginRun() {
+    rb_ui::rb_DoubleBool data_srvs;
+    data_srvs.request.request=true;
+    if(rbRunCommand_client.call(data_srvs)){
+        if(data_srvs.response.respond){
+            cout<<"开始运行成功"<<endl;
+        }
+    } else{
+        LOG("Warning")->logErrorMessage("rbRunCommand_client接收消息失败!");
+        cout<<"MagicGetDataCommand_client接收失败"<<endl;
+    }
+}
+
+void MainWindow::thread_GagicGetData() {
+    rb_ui::rb_DoubleBool data_srvs;
+    data_srvs.request.request=true;
+    if(MagicGetDataCommand_client.call(data_srvs)){
+        if(data_srvs.response.respond){
+            cout<<"获取魔方数据成功"<<endl;
+        }
+    } else{
+        LOG("Warning")->logErrorMessage("MagicGetDataCommand_client接收消息失败!");
+        cout<<"MagicGetDataCommand_client接收失败"<<endl;
+    }
+
+}
+
+void MainWindow::thread_GagicSolve() {
+    rb_ui::rb_DoubleBool data_srvs;
+    data_srvs.request.request=true;
+    if(MagicSolveCommand_client.call(data_srvs)){
+        if(data_srvs.response.respond){
+            cout<<"解算魔方数据成功"<<endl;
+        }
+    } else{
+        cout<<"MagicSolveCommand_client接收失败"<<endl;
+        LOG("Warning")->logErrorMessage("MagicSolveCommand_client接收消息失败!");
+    }
+}
+
+void MainWindow::thread_GagicRunSolve() {
+    rb_ui::rb_DoubleBool data_srvs;
+    data_srvs.request.request=true;
+    if(MagicRunSolveCommand_client.call(data_srvs)){
+        if(data_srvs.response.respond){
+            cout<<"运行魔方解算数据成功"<<endl;
+        }
+    } else{
+        cout<<"rbGrepSetCommand_client接收失败"<<endl;
+        LOG("Warning")->logErrorMessage("rbGrepSetCommand_client接收消息失败!");
+
+    }
+}
+
+void MainWindow::thread_RbGrepSet() {
+    int index1=comboBox->currentIndex();
+    int index2=comboBox_2->currentIndex();
+    int index3=comboBox_3->currentIndex();
+    rb_ui::rb_ArrayAndBool data_msg;
+    data_msg.request.data.reserve(3);
+    data_msg.request.data[0]=index1;
+    data_msg.request.data[1]=index2;
+    data_msg.request.data[2]=index3;
+    if(rbGrepSetCommand_client.call(data_msg)){
+    if(data_msg.response.respond){
+        cout<<"抓取成功"<<endl;
+    }
+    } else{
+        cout<<"rbGrepSetCommand_client接收失败"<<endl;
+        LOG("Warning")->logErrorMessage("rbGrepSetCommand_client接收消息失败!");
+    }
+}
+
+MainWindow::~MainWindow() {
+}
+
+
+
+
+
+
+
 

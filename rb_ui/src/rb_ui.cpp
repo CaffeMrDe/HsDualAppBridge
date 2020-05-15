@@ -6,6 +6,7 @@ using namespace std;
 
 
 int main(int args,char** argv){
+    //ros节点
     std::string nodeName = "robot_UI";
     ros::init(args, argv, nodeName);
     //创建节点
@@ -13,13 +14,12 @@ int main(int args,char** argv){
     ros::AsyncSpinner spinner(1);
     spinner.start();
     ros::NodeHandle node;
+    //应用程序
     QApplication app(args, argv);
-    MainWindow mainwindow;
-    mainwindow.setupUi(&node);
+    MainWindow mainwindow(&node);
+    mainwindow.show();
     gloalMain = &mainwindow;
-
     qInstallMessageHandler(customMessageHandler);
-
     return app.exec();
 
 }
