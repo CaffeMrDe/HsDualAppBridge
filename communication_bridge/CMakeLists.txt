@@ -1,66 +1,23 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(rb_ui)
+project(communication_bridge)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++11)
-#set(CMAKE_CXX_STANDARD 14)
+# add_compile_options(-std=c++11)
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  rosmsg
-  rospy
-  std_msgs
-  message_generation
-)
-
-
-# 自动调用moc，uic，rcc处理qt的扩展部分
-#set(CMAKE_AUTOMOC ON)
-#set(CMAKE_AUTOUIC ON)
-#set(CMAKE_AUTORCC ON)
-
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-# 设置find__xxx的路径
-#set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/qt)
-set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /opt/Qt5.12.0/5.12.0/gcc_64)
-
-# 设置输出的路径
-SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/bin" CACHE PATH "Runtime directory" FORCE)
-SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/libs" CACHE PATH "Library directory" FORCE)
-SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/libs" CACHE PATH "Archive directory" FORCE)
-file(
-        WRITE
-        ${CMAKE_CURRENT_SOURCE_DIR}/build/bin/qt.conf
-        "[Paths]
-#Prefix=../lib/Qt
-#Binaries=bin
-#Libraries=lib
-Plugins=${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/qt/plugins
-#Imports=imports
-#Qml2Imports=qml"
-)
-
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Gui REQUIRED)
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5OpenGL REQUIRED)
-find_package(Qt5Network REQUIRED)
-
-SET(QT_LIBRARIES ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5OpenGL_LIBRARIES}
-        ${Qt5Network_LIBRARIES} ${Qt5Xml_LIBRARIES} ${Qt5Qml_LIBRARIES})
-include_directories(
-        ${Qt5Core_INCLUDE_DIRS}
-        ${Qt5Gui_INCLUDE_DIRS}
-        ${Qt5Widgets_INCLUDE_DIRS}
-        ${Qt5Network_INCLUDE_DIRS})
-
-#线程
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -lpthread -Wl,--no-as-needed  -g3 -Wall")
-# 与位置无关
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+        roscpp interactive_markers
+        rosmsg
+        message_generation
+        moveit_core moveit_visual_tools
+        moveit_ros_planning
+        moveit_ros_planning_interface
+        pluginlib geometric_shapes
+        pcl_ros pcl_conversions
+        rosbag tf2_ros tf2_eigen
+        tf2_geometry_msgs)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -103,10 +60,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 # )
 
 ## Generate services in the 'srv' folder
-add_service_files(
+ add_service_files(
    FILES
-   rb_ArrayAndBool.srv
-   rb_DoubleBool.srv
+         rb_ArrayAndBool.srv
+         rb_DoubleBool.srv
  )
 
 ## Generate actions in the 'action' folder
@@ -153,8 +110,8 @@ add_service_files(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES rb_ui
-#  CATKIN_DEPENDS roscpp rosmsg rospy
+#  LIBRARIES communication_bridge
+#  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
 )
 
@@ -165,15 +122,14 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
+  include ${catkin_INCLUDE_DIRS}
 # include
- include/log4cplus
- include/rb_ui
- include ${catkin_INCLUDE_DIRS}
+# ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/rb_ui.cpp
+#   src/${PROJECT_NAME}/communication_bridge.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -184,31 +140,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/rb_ui_node.cpp)
-#add_subdirectory(src/utils)
-link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib)
-add_executable(rb_ui src/rb_ui.cpp
-        src/utils/MainWindow.cpp
-#        src/logcpp/logmanager.cpp
-#        src/logcpp/log4qtfun.cpp
-#        src/logcpp/log4fun.cpp
-        )
-#add_executable()
-target_link_libraries(
-        rb_ui
-        log4cplus
-        logTest
-        ${catkin_LIBRARIES}
-        ${QT_LIBRARIES}
-)
-#logTest
-add_executable(fortest src/fortest.cpp )
-target_link_libraries(
-        fortest
-        ${catkin_LIBRARIES}
-        ${QT_LIBRARIES}
-)
-
+# add_executable(${PROJECT_NAME}_node src/communication_bridge_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -272,10 +204,21 @@ target_link_libraries(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_rb_ui.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_communication_bridge.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+
+add_executable(robConnUI
+        src/robConnUI.cpp
+        include/communication_bridge/util_robConnUI.h
+        src/util_robConnUI.cpp
+)
+add_dependencies(robConnUI ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(robConnUI
+  ${catkin_LIBRARIES}
+)

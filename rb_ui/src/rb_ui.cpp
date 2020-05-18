@@ -21,7 +21,6 @@ int main(int args,char** argv){
     gloalMain = &mainwindow;
     qInstallMessageHandler(customMessageHandler);
     return app.exec();
-
 }
 
 

@@ -3,8 +3,8 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="rb_ui" targetName="std_msgs_generate_messages_eus" />
-      <config projectName="rb_ui" targetName="fortest" />
       <config projectName="rb_ui" targetName="std_msgs_generate_messages_lisp" />
+      <config projectName="rb_ui" targetName="fortest" />
       <config projectName="rb_ui" targetName="roscpp_generate_messages_cpp" />
       <config projectName="rb_ui" targetName="rb_ui_genlisp" />
       <config projectName="rb_ui" targetName="gtest_main" />
@@ -30,14 +30,14 @@
       <config projectName="rb_ui" targetName="rb_ui_generate_messages_nodejs" />
       <config projectName="rb_ui" targetName="roscpp_generate_messages_eus" />
       <config projectName="rb_ui" targetName="gtest" />
-      <config projectName="rb_ui" targetName="rb_ui_generate_messages_lisp" />
       <config projectName="rb_ui" targetName="rb_ui" />
+      <config projectName="rb_ui" targetName="rb_ui_generate_messages_lisp" />
       <config projectName="rb_ui" targetName="_rb_ui_generate_messages_check_deps_rb_ArrayAndBool" />
       <config projectName="rb_ui" targetName="roscpp_generate_messages_nodejs" />
       <config projectName="rb_ui" targetName="std_msgs_generate_messages_py" />
       <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_nodejs" />
-      <config projectName="rb_ui" targetName="gmock" />
       <config projectName="rb_ui" targetName="rb_ui_gencpp" />
+      <config projectName="rb_ui" targetName="gmock" />
       <config projectName="rb_ui" targetName="rb_ui_genpy" />
       <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_eus" />
       <config projectName="rb_ui" targetName="rb_ui_generate_messages_eus" />
@@ -50,11 +50,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e2e2d99-ccc6-4274-bec1-38a9f03afc38" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../logWithQt" beforeDir="false" afterPath="$PROJECT_DIR$/../logWithQt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/log4cplus/logClass.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/log4cplus/messagehandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/log4cplus/messagehandler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/rb_ui/MainWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rb_ui/MainWindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fortest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/fortest.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rb_ui.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rb_ui.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/MainWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/MainWindow.cpp" afterDir="false" />
     </list>
@@ -68,6 +70,13 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -77,16 +86,19 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/logcpp" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/logcpp" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/photo" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/photo" />
       <recent name="$PROJECT_DIR$/include/rb_ui" />
       <recent name="$PROJECT_DIR$/include/log4cplus" />
     </key>
@@ -360,7 +372,12 @@
       <workItem from="1589446199413" duration="7621000" />
       <workItem from="1589502522154" duration="21862000" />
       <workItem from="1589531952441" duration="9929000" />
-      <workItem from="1589543417406" duration="3626000" />
+      <workItem from="1589543417406" duration="4473000" />
+      <workItem from="1589589086057" duration="5377000" />
+      <workItem from="1589595621901" duration="1280000" />
+      <workItem from="1589606762898" duration="8108000" />
+      <workItem from="1589617511606" duration="3870000" />
+      <workItem from="1589761792077" duration="681000" />
     </task>
     <servers />
   </component>

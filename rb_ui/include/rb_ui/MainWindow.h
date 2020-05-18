@@ -32,7 +32,6 @@
 #include "roscpp_tutorials/TwoInts.h"
 #include "rb_ui/rb_ArrayAndBool.h"
 #include "rb_ui/rb_DoubleBool.h"
-#include "include/log4cplus/logClass.h"
 
 //#include "messagehandler.h"
 using namespace std;
@@ -74,7 +73,6 @@ private:
 
     //qt控件
     QMainWindow* w;
-    QTimer* updateTimer;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
@@ -84,13 +82,20 @@ private:
     QHBoxLayout *horizontalLayout_3;
     QTabWidget *tabWidget;
     QWidget *tab;
-    QVBoxLayout *verticalLayout_5;
+    QHBoxLayout *horizontalLayout_4;
     QVBoxLayout *verticalLayout_4;
-    QHBoxLayout *horizontalLayout_6;
-    QCheckBox *checkBox_rb1CoonStatus;
-    QCheckBox *checkBox_rb2CoonStatus;
-    QCheckBox *checkBox_rb1ErrStatus;
-    QCheckBox *checkBox_rb2ErrStatus;
+    QHBoxLayout *horizontalLayout_2;
+    QGridLayout *gridLayout;
+    QLabel *label_5;
+    QLabel *label_6;
+    QLabel *label_7;
+    QLabel *label_8;
+    QLabel *label_rb1CoonStatus;
+    QLabel *label_rb2CoonStatus;
+    QLabel *label_rb1ErrStatus;
+    QLabel *label_rb2ErrStatus;
+
+
     QHBoxLayout *horizontalLayout_5;
     QPushButton *btn_rbConn;
     QPushButton *btn_rvizRun;

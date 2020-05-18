@@ -26,7 +26,6 @@ void customMessageHandler(QtMsgType type, const QMessageLogContext &, const QStr
             exit(0);
     }
     qstrText.replace(QRegExp("\""), "");
-
     gloalMain->emitTextControl(qstrText);
 }
 
