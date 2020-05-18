@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/communication_bridge.iml" filepath="$PROJECT_DIR$/.idea/communication_bridge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/rbconnui_bridge.iml" filepath="$PROJECT_DIR$/.idea/rbconnui_bridge.iml" />
     </modules>
   </component>
 </project>

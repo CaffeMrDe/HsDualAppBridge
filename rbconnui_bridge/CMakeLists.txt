@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(communication_bridge)
+project(rbconnui_bridge)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -215,7 +215,7 @@ include_directories(
 
 add_executable(robConnUI
         src/robConnUI.cpp
-        include/communication_bridge/util_robConnUI.h
+        include/rbconnui_bridge/util_robConnUI.h
         src/util_robConnUI.cpp
 )
 add_dependencies(robConnUI ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
