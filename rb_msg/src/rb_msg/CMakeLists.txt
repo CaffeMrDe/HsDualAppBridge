@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 2.8.3)
-project(rb_ui)
+cmake_minimum_required(VERSION 3.0.2)
+project(rb_msg)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++11)
-#set(CMAKE_CXX_STANDARD 14)
+# add_compile_options(-std=c++11)
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -11,62 +11,16 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rosmsg
   rospy
-  std_msgs
-  rb_msg
-  message_generation
-  sensor_msgs
-  cv_bridge
-  image_transport
-)
-#rbmsg
-  #rb_msg
-
-# 自动调用moc，uic，rcc处理qt的扩展部分
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)
-
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-# 设置find__xxx的路径
-#set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/qt)
-#set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /opt/Qt5.12.0/5.12.0/gcc_64)
-set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /usr/lib/x86_64-linux-gnu/qt5)
-
-# 设置输出的路径
-SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/bin" CACHE PATH "Runtime directory" FORCE)
-SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/libs" CACHE PATH "Library directory" FORCE)
-SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/libs" CACHE PATH "Archive directory" FORCE)
-file(
-        WRITE
-        ${CMAKE_CURRENT_SOURCE_DIR}/build/bin/qt.conf
-        "[Paths]
-#Prefix=../lib/Qt
-#Binaries=bin
-#Libraries=lib
-Plugins=${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/qt/plugins
-#Imports=imports
-#Qml2Imports=qml"
+sensor_msgs
+std_msgs
+message_generation
 )
 
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Gui REQUIRED)
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5OpenGL REQUIRED)
-find_package(Qt5Network REQUIRED)
+add_message_files(
+    FILES
+    rbImageList.msg
+)
 
-SET(QT_LIBRARIES ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5OpenGL_LIBRARIES}
-        ${Qt5Network_LIBRARIES} ${Qt5Xml_LIBRARIES} ${Qt5Qml_LIBRARIES})
-include_directories(
-        ${Qt5Core_INCLUDE_DIRS}
-        ${Qt5Gui_INCLUDE_DIRS}
-        ${Qt5Widgets_INCLUDE_DIRS}
-        ${Qt5Network_INCLUDE_DIRS})
-
-#线程
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -lpthread -Wl,--no-as-needed  -g3 -Wall")
-# 与位置无关
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -104,17 +58,16 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 ## Generate messages in the 'msg' folder
 # add_message_files(
 #   FILES
-#   rbImageList.msg
+#   Message1.msg
+#   Message2.msg
 # )
 
 ## Generate services in the 'srv' folder
-add_service_files(
-   FILES
-   rb_ArrayAndBool.srv
-   rb_DoubleBool.srv
-#   robotConn.srv
-#   robotError.srv
- )
+# add_service_files(
+#   FILES
+#   Service1.srv
+#   Service2.srv
+# )
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -124,12 +77,15 @@ add_service_files(
 # )
 
 ## Generate added messages and services with any dependencies listed here
+# generate_messages(
+#   DEPENDENCIES
+#   std_msgs  # Or other packages containing msgs
+# )
  generate_messages(
    DEPENDENCIES
    std_msgs  # Or other packages containing msgs
-   sensor_msgs
+         sensor_msgs
  )
-
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
 ################################################
@@ -161,10 +117,10 @@ add_service_files(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES rb_ui
+#  LIBRARIES rbmsg
 #  CATKIN_DEPENDS roscpp rosmsg rospy
 #  DEPENDS system_lib
-  CATKIN_DEPENDS message_runtime
+DEPENDS message_runtime
 )
 
 ###########
@@ -175,16 +131,12 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
 # include
- include/log4cplus
- include/rb_ui
- include ${catkin_INCLUDE_DIRS}
-#        include/rbmsg
-# /home/wangneng/catkin_ws/devel
+  ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/rb_ui.cpp
+#   src/${PROJECT_NAME}/rbmsg.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -195,21 +147,8 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/rb_ui_node.cpp)
-link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib)
-add_executable(rb_ui src/rb_ui.cpp
-        include/rb_ui/MainWindow.h
-        src/utils/MainWindow.cpp
-        )
+# add_executable(${PROJECT_NAME}_node src/rbmsg_node.cpp)
 
-target_link_libraries(
-        rb_ui
-        log4cplus
-        logTest
-        ${catkin_LIBRARIES}
-        ${QT_LIBRARIES}
-        ${OpenCV_LIBS}
-)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -234,7 +173,7 @@ target_link_libraries(
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
+# catkin_install_python(PROGRAMS
 #   scripts/my_python_script
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
@@ -272,7 +211,7 @@ target_link_libraries(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_rb_ui.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_rbmsg.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

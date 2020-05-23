@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>rb_ui</name>
+  <name>rb_msg</name>
   <version>0.0.0</version>
-  <description>The rb_ui package</description>
+  <description>The rb_msg package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/rb_ui</url> -->
+  <!-- <url type="website">http://wiki.ros.org/rb_msg</url> -->
 
 
   <!-- Author tags are optional, multiple are allowed, one per tag -->
@@ -58,26 +58,11 @@
   <exec_depend>roscpp</exec_depend>
   <exec_depend>rosmsg</exec_depend>
   <exec_depend>rospy</exec_depend>
-
-  <build_depend>message_generation</build_depend>
-  <exec_depend>message_runtime</exec_depend>
-
   <build_depend>sensor_msgs</build_depend>
   <build_export_depend>sensor_msgs</build_export_depend>
   <exec_depend>sensor_msgs</exec_depend>
-
-
-  <build_depend>rb_msg</build_depend>
-  <build_export_depend>rb_msg</build_export_depend>
-  <exec_depend>rb_msg</exec_depend>
-
-  <build_depend>cv_bridge</build_depend>
-  <build_export_depend>cv_bridge</build_export_depend>
-  <exec_depend>cv_bridge</exec_depend>
-
-  <build_depend>image_transport</build_depend>
-  <build_export_depend>image_transport</build_export_depend>
-  <exec_depend>image_transport</exec_depend>
+<build_depend>message_generation</build_depend>
+<exec_depend>message_runtime</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

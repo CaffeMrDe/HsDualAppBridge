@@ -11,7 +11,52 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fb318e0-d596-482e-b036-50bf50755f62" name="Default Changelist" comment="" />
+    <list default="true" id="0fb318e0-d596-482e-b036-50bf50755f62" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../logWithQt" beforeDir="false" afterPath="$PROJECT_DIR$/../../logWithQt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../include/rb_ui/MainWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/../include/rb_ui/MainWindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../include/rb_ui/rb_ArrayAndBool.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../include/rb_ui/rb_ArrayAndBoolRequest.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../include/rb_ui/rb_ArrayAndBoolResponse.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../include/rb_ui/rb_DoubleBool.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../include/rb_ui/rb_DoubleBoolRequest.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../include/rb_ui/rb_DoubleBoolResponse.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/rb_ui.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../src/rb_ui.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/utils/MainWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../src/utils/MainWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/CMakeFiles/CMakeRuleHashes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/CMakeFiles/robConnUI.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/gtest/CMakeFiles/gmock.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/gtest/CMakeFiles/gmock_main.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/gtest/gtest/CMakeFiles/gtest.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/cmake-build-debug/gtest/gtest/CMakeFiles/gtest_main.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/include/rbconnui_bridge/rb_ArrayAndBool.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/include/rbconnui_bridge/rb_ArrayAndBoolRequest.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/include/rbconnui_bridge/rb_ArrayAndBoolResponse.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/include/rbconnui_bridge/rb_DoubleBool.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/include/rbconnui_bridge/rb_DoubleBoolRequest.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/include/rbconnui_bridge/rb_DoubleBoolResponse.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/include/rbconnui_bridge/util_robConnUI.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/package.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/src/robConnUI.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/src/util_robConnUI.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/srv/rb_ArrayAndBool.srv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rbconnui_bridge/srv/rb_DoubleBool.srv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../rubik_cube_solve" beforeDir="false" afterPath="$PROJECT_DIR$/../../rubik_cube_solve" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,11 +76,15 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectId" id="1bjzI9sVX3wpRTP3c7iyTtYwguX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CMakeLists.txt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
@@ -85,10 +134,27 @@
       <workItem from="1589347750215" duration="15255000" />
       <workItem from="1589419478470" duration="235000" />
       <workItem from="1589420746720" duration="1109000" />
+      <workItem from="1589787524473" duration="16000" />
+      <workItem from="1589787547670" duration="1226000" />
+      <workItem from="1589800591733" duration="22000" />
+      <workItem from="1589800621154" duration="3000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

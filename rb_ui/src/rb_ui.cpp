@@ -1,8 +1,9 @@
-#include "include/rb_ui/MainWindow.h"
+#include "rb_ui/MainWindow.h"
 #include "logmanager.h"
 #include "globalvar.h"
 #include "messagehandler.h"
 using namespace std;
+using namespace cv;
 
 
 int main(int args,char** argv){
@@ -22,9 +23,3 @@ int main(int args,char** argv){
     qInstallMessageHandler(customMessageHandler);
     return app.exec();
 }
-
-
-
-
-
-
