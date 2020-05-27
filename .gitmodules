@@ -4,3 +4,6 @@
 [submodule "logWithQt"]
 	path = logWithQt
 	url = https://github.com/CaffeMrDe/logWithQt.git
+[submodule "grasp_place"]
+	path = grasp_place
+	url = https://github.com/StoneRobot/grasp_place.git
