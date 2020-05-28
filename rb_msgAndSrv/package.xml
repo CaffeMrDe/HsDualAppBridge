@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>rb_msgs</name>
+  <name>rb_msgAndSrv</name>
   <version>0.0.0</version>
-  <description>The rb_msgs package</description>
+  <description>The rb_msgAndSrv package</description>
 
  
   <maintainer email="wangneng@todo.todo">wangneng</maintainer>

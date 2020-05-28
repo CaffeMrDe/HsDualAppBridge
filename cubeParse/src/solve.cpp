@@ -57,8 +57,8 @@ bool Solve::solvecube_server_Callback(cubeParse::SolveCube::Request &req, cubePa
         data.data.push_back(final_solution[i]);
     //发送解算指令
     solution_pub.publish(data);
-
     cout << "魔方解算指令发送完毕,请注意查收!" << endl;
+    ros::Duration(1).sleep();
     
     solution_pub.shutdown();
 }
