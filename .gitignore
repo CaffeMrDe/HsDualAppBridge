@@ -22,3 +22,6 @@
 !**/*.xml
 *.png
 build/
+logWithQt/
+cubeParse/
+rubik_cube_solve/
