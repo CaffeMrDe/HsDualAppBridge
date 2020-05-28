@@ -7,7 +7,7 @@ def solver(s):
    print ("calculating...")
    answer = kociemba.solve(s)
    print("calculate successfully!")
-   print(answer)
+   #print(answer)
    return answer
 
 def hellos(s):

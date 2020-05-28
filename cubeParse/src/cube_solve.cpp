@@ -20,9 +20,10 @@ cubeSolve::~cubeSolve()
 
 vector<int>  cubeSolve::settlement(std::string c)
 {
-    cout << "解算魔方中..." << endl;
+    //cout << "解算魔方中..." << endl;
 	char* sss = cubeSolve::ko_solve(c);
 	vector<int> answer( cubeSolve::move_code(sss) );
+
 	for ( size_t i = 0; i < answer.size(); ++i)
 	   cout << answer[i] << " ";
     cout << endl;
@@ -45,7 +46,7 @@ char* cubeSolve::ko_solve(std::string color_code)
 
     //引入当前路径,否则下面模块不能正常导入
 	PyRun_SimpleString("import sys"); 
-    PyRun_SimpleString("sys.path.append('/home/xiaohuihui/catkin_ws/src/cube')"); //
+    PyRun_SimpleString("sys.path.append('/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/')"); //
     //PyRun_SimpleString("sys.path.append('/home/xiaohuihui/kociemba/kociemba-1.2')");
     //PyRun_SimpleString("print(sys.path)");
 
@@ -96,7 +97,7 @@ vector<int> cubeSolve::move_code(std::string solution)
     vector<int> motion_code;
 	string judge;
 	//std::string solution = "D2 R' D' F2 B D R2 D2 R' F2 D' F2 U' B2 L2 U2 D R2 U";
-	cout << solution << endl;
+	//cout << solution << endl;
 	string buf;
 	stringstream ss(solution);
 	vector<string>  tokens;
@@ -104,7 +105,7 @@ vector<int> cubeSolve::move_code(std::string solution)
 		tokens.push_back(buf);
 	for (size_t i = 0; i < tokens.size(); i++)
 	{
-		cout << tokens[i] << endl;
+		//cout << tokens[i] << endl;
 		judge = tokens[i];
 		if (judge == "U")
 			motion_code.push_back(0);
