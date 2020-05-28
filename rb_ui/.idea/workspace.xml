@@ -2,115 +2,84 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="rb_ui" targetName="rb_ui_generate_messages_cpp" />
-      <config projectName="rb_ui" targetName="std_msgs_generate_messages_py" />
-      <config projectName="rb_ui" targetName="doxygen" />
-      <config projectName="rb_ui" targetName="rb_ui_genpy" />
-      <config projectName="rb_ui" targetName="roscpp_generate_messages_py" />
-      <config projectName="rb_ui" targetName="_rb_ui_generate_messages_check_deps_rb_DoubleBool" />
-      <config projectName="rb_ui" targetName="rb_ui_gencpp" />
-      <config projectName="rb_ui" targetName="roscpp_generate_messages_cpp" />
-      <config projectName="rb_ui" targetName="geometry_msgs_generate_messages_nodejs" />
-      <config projectName="rb_ui" targetName="rb_msg_generate_messages_cpp" />
-      <config projectName="rb_ui" targetName="geometry_msgs_generate_messages_eus" />
-      <config projectName="rb_ui" targetName="gtest" />
-      <config projectName="rb_ui" targetName="gtest_main" />
-      <config projectName="rb_ui" targetName="rb_msg_generate_messages_nodejs" />
-      <config projectName="rb_ui" targetName="roscpp_generate_messages_nodejs" />
-      <config projectName="rb_ui" targetName="rb_ui_generate_messages_nodejs" />
-      <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_eus" />
-      <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_py" />
-      <config projectName="rb_ui" targetName="sensor_msgs_generate_messages_eus" />
-      <config projectName="rb_ui" targetName="rb_ui_generate_messages" />
-      <config projectName="rb_ui" targetName="download_extra_data" />
-      <config projectName="rb_ui" targetName="tests" />
-      <config projectName="rb_ui" targetName="sensor_msgs_generate_messages_lisp" />
-      <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_lisp" />
-      <config projectName="rb_ui" targetName="roscpp_generate_messages_lisp" />
       <config projectName="rb_ui" targetName="std_msgs_generate_messages_eus" />
-      <config projectName="rb_ui" targetName="rb_ui_generate_messages_py" />
-      <config projectName="rb_ui" targetName="geometry_msgs_generate_messages_py" />
-      <config projectName="rb_ui" targetName="gmock_main" />
-      <config projectName="rb_ui" targetName="geometry_msgs_generate_messages_cpp" />
-      <config projectName="rb_ui" targetName="run_tests" />
-      <config projectName="rb_ui" targetName="sensor_msgs_generate_messages_cpp" />
-      <config projectName="rb_ui" targetName="rb_ui_generate_messages_eus" />
-      <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_nodejs" />
-      <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_cpp" />
-      <config projectName="rb_ui" targetName="sensor_msgs_generate_messages_py" />
-      <config projectName="rb_ui" targetName="geometry_msgs_generate_messages_lisp" />
-      <config projectName="rb_ui" targetName="rb_msg_generate_messages_lisp" />
-      <config projectName="rb_ui" targetName="rb_msg_generate_messages_py" />
-      <config projectName="rb_ui" targetName="_rb_ui_generate_messages_check_deps_rb_ArrayAndBool" />
-      <config projectName="rb_ui" targetName="rb_ui_autogen" />
-      <config projectName="rb_ui" targetName="rb_ui_geneus" />
-      <config projectName="rb_ui" targetName="std_msgs_generate_messages_cpp" />
-      <config projectName="rb_ui" targetName="roscpp_generate_messages_eus" />
-      <config projectName="rb_ui" targetName="rb_ui" />
-      <config projectName="rb_ui" targetName="rb_msg_generate_messages_eus" />
+      <config projectName="rb_ui" targetName="rb_msgs_generate_messages_py" />
       <config projectName="rb_ui" targetName="std_msgs_generate_messages_lisp" />
-      <config projectName="rb_ui" targetName="rb_ui_genlisp" />
-      <config projectName="rb_ui" targetName="sensor_msgs_generate_messages_nodejs" />
-      <config projectName="rb_ui" targetName="gmock" />
+      <config projectName="rb_ui" targetName="geometry_msgs_generate_messages_nodejs" />
+      <config projectName="rb_ui" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="rb_ui" targetName="rb_msgs_generate_messages_cpp" />
+      <config projectName="rb_ui" targetName="gtest_main" />
+      <config projectName="rb_ui" targetName="download_extra_data" />
+      <config projectName="rb_ui" targetName="sensor_msgs_generate_messages_eus" />
+      <config projectName="rb_ui" targetName="tests" />
+      <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_lisp" />
+      <config projectName="rb_ui" targetName="sensor_msgs_generate_messages_py" />
+      <config projectName="rb_ui" targetName="run_tests" />
+      <config projectName="rb_ui" targetName="rb_msgs_generate_messages_lisp" />
+      <config projectName="rb_ui" targetName="roscpp_generate_messages_py" />
+      <config projectName="rb_ui" targetName="geometry_msgs_generate_messages_cpp" />
+      <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="rb_ui" targetName="geometry_msgs_generate_messages_py" />
       <config projectName="rb_ui" targetName="std_msgs_generate_messages_nodejs" />
+      <config projectName="rb_ui" targetName="sensor_msgs_generate_messages_lisp" />
+      <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_cpp" />
+      <config projectName="rb_ui" targetName="rb_ui_autogen" />
+      <config projectName="rb_ui" targetName="gmock_main" />
       <config projectName="rb_ui" targetName="clean_test_results" />
-      <config projectName="rb_ui" targetName="rb_ui_gennodejs" />
-      <config projectName="rb_ui" targetName="rb_ui_generate_messages_lisp" />
+      <config projectName="rb_ui" targetName="std_msgs_generate_messages_cpp" />
+      <config projectName="rb_ui" targetName="doxygen" />
+      <config projectName="rb_ui" targetName="roscpp_generate_messages_lisp" />
+      <config projectName="rb_ui" targetName="roscpp_generate_messages_eus" />
+      <config projectName="rb_ui" targetName="gtest" />
+      <config projectName="rb_ui" targetName="rb_msgs_generate_messages_eus" />
+      <config projectName="rb_ui" targetName="sensor_msgs_generate_messages_nodejs" />
+      <config projectName="rb_ui" targetName="rb_ui" />
+      <config projectName="rb_ui" targetName="rb_msgs_generate_messages_nodejs" />
+      <config projectName="rb_ui" targetName="geometry_msgs_generate_messages_lisp" />
+      <config projectName="rb_ui" targetName="sensor_msgs_generate_messages_cpp" />
+      <config projectName="rb_ui" targetName="roscpp_generate_messages_nodejs" />
+      <config projectName="rb_ui" targetName="geometry_msgs_generate_messages_eus" />
+      <config projectName="rb_ui" targetName="std_msgs_generate_messages_py" />
+      <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_nodejs" />
+      <config projectName="rb_ui" targetName="gmock" />
+      <config projectName="rb_ui" targetName="rosgraph_msgs_generate_messages_eus" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" GENERATION_DIR="cmake-build-debug" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" GENERATION_DIR="/tmp/ui/cmake-build-debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e2e2d99-ccc6-4274-bec1-38a9f03afc38" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../grasp_place" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../logWithQt" beforeDir="false" afterPath="$PROJECT_DIR$/../logWithQt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rb_msg/devel/include/rb_msg/rbImageList.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rb_msg/src/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rb_msg/src/rb_msg/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rb_msg/src/rb_msg/package.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeRuleHashes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mytest.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rb_ui.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rb_ui_autogen.dir/AutogenOldSettings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/gtest/CMakeFiles/gmock.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/gtest/CMakeFiles/gmock_main.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/gtest/gtest/CMakeFiles/gtest.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/gtest/gtest/CMakeFiles/gtest_main.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/rb_ui_autogen/O2LJDIJXXN/moc_MainWindow.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/rb_ui_autogen/mocs_compilation.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/include/rb_ui/MainWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rb_ui/MainWindow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rb_ui/rb_ArrayAndBool.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rb_ui/rb_ArrayAndBoolRequest.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rb_ui/rb_ArrayAndBoolResponse.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rb_ui/rb_DoubleBool.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rb_ui/rb_DoubleBoolRequest.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rb_ui/rb_DoubleBoolResponse.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.xml" beforeDir="false" afterPath="$PROJECT_DIR$/package.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rb_ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/rb_ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fortest.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rb_ui.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rb_ui.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/CMakeLists.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/MainWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/MainWindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/CMakeFiles/CMakeRuleHashes.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/CMakeFiles/robConnUI.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/gtest/CMakeFiles/gmock.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/gtest/CMakeFiles/gmock_main.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/gtest/gtest/CMakeFiles/gtest.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/cmake-build-debug/gtest/gtest/CMakeFiles/gtest_main.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/include/rbconnui_bridge/rb_ArrayAndBool.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/include/rbconnui_bridge/rb_ArrayAndBoolRequest.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/include/rbconnui_bridge/rb_ArrayAndBoolResponse.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/include/rbconnui_bridge/rb_DoubleBool.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/include/rbconnui_bridge/rb_DoubleBoolRequest.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/include/rbconnui_bridge/rb_DoubleBoolResponse.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/include/rbconnui_bridge/util_robConnUI.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/package.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/src/robConnUI.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/src/util_robConnUI.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/srv/rb_ArrayAndBool.srv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rbconnui_bridge/srv/rb_DoubleBool.srv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../rubik_cube_solve" beforeDir="false" afterPath="$PROJECT_DIR$/../rubik_cube_solve" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -188,16 +157,6 @@
     </option>
   </component>
   <component name="RunManager" selected="CMake Application.rb_ui">
-    <configuration name="_rb_ui_generate_messages_check_deps_rb_ArrayAndBool" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="_rb_ui_generate_messages_check_deps_rb_ArrayAndBool" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="_rb_ui_generate_messages_check_deps_rb_DoubleBool" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="_rb_ui_generate_messages_check_deps_rb_DoubleBool" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="clean_test_results" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="clean_test_results" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -258,27 +217,27 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="rb_msg_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_msg_generate_messages_cpp" CONFIG_NAME="Debug">
+    <configuration name="rb_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="rb_msg_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_msg_generate_messages_eus" CONFIG_NAME="Debug">
+    <configuration name="rb_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_msgs_generate_messages_eus" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="rb_msg_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_msg_generate_messages_lisp" CONFIG_NAME="Debug">
+    <configuration name="rb_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="rb_msg_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_msg_generate_messages_nodejs" CONFIG_NAME="Debug">
+    <configuration name="rb_msgs_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_msgs_generate_messages_nodejs" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="rb_msg_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_msg_generate_messages_py" CONFIG_NAME="Debug">
+    <configuration name="rb_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_msgs_generate_messages_py" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -289,61 +248,6 @@
       </method>
     </configuration>
     <configuration name="rb_ui_autogen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_ui_autogen" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="rb_ui_gencpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_ui_gencpp" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="rb_ui_generate_messages" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_ui_generate_messages" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="rb_ui_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_ui_generate_messages_cpp" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="rb_ui_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_ui_generate_messages_eus" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="rb_ui_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_ui_generate_messages_lisp" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="rb_ui_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_ui_generate_messages_nodejs" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="rb_ui_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_ui_generate_messages_py" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="rb_ui_geneus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_ui_geneus" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="rb_ui_genlisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_ui_genlisp" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="rb_ui_gennodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_ui_gennodejs" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="rb_ui_genpy" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rb_ui" TARGET_NAME="rb_ui_genpy" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -459,8 +363,6 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="CMake Application._rb_ui_generate_messages_check_deps_rb_ArrayAndBool" />
-      <item itemvalue="CMake Application._rb_ui_generate_messages_check_deps_rb_DoubleBool" />
       <item itemvalue="CMake Application.clean_test_results" />
       <item itemvalue="CMake Application.download_extra_data" />
       <item itemvalue="CMake Application.doxygen" />
@@ -469,24 +371,13 @@
       <item itemvalue="CMake Application.geometry_msgs_generate_messages_lisp" />
       <item itemvalue="CMake Application.geometry_msgs_generate_messages_nodejs" />
       <item itemvalue="CMake Application.geometry_msgs_generate_messages_py" />
-      <item itemvalue="CMake Application.rb_msg_generate_messages_cpp" />
-      <item itemvalue="CMake Application.rb_msg_generate_messages_eus" />
-      <item itemvalue="CMake Application.rb_msg_generate_messages_lisp" />
-      <item itemvalue="CMake Application.rb_msg_generate_messages_nodejs" />
-      <item itemvalue="CMake Application.rb_msg_generate_messages_py" />
+      <item itemvalue="CMake Application.rb_msgs_generate_messages_cpp" />
+      <item itemvalue="CMake Application.rb_msgs_generate_messages_eus" />
+      <item itemvalue="CMake Application.rb_msgs_generate_messages_lisp" />
+      <item itemvalue="CMake Application.rb_msgs_generate_messages_nodejs" />
+      <item itemvalue="CMake Application.rb_msgs_generate_messages_py" />
       <item itemvalue="CMake Application.rb_ui" />
       <item itemvalue="CMake Application.rb_ui_autogen" />
-      <item itemvalue="CMake Application.rb_ui_gencpp" />
-      <item itemvalue="CMake Application.rb_ui_generate_messages" />
-      <item itemvalue="CMake Application.rb_ui_generate_messages_cpp" />
-      <item itemvalue="CMake Application.rb_ui_generate_messages_eus" />
-      <item itemvalue="CMake Application.rb_ui_generate_messages_lisp" />
-      <item itemvalue="CMake Application.rb_ui_generate_messages_nodejs" />
-      <item itemvalue="CMake Application.rb_ui_generate_messages_py" />
-      <item itemvalue="CMake Application.rb_ui_geneus" />
-      <item itemvalue="CMake Application.rb_ui_genlisp" />
-      <item itemvalue="CMake Application.rb_ui_gennodejs" />
-      <item itemvalue="CMake Application.rb_ui_genpy" />
       <item itemvalue="CMake Application.roscpp_generate_messages_cpp" />
       <item itemvalue="CMake Application.roscpp_generate_messages_eus" />
       <item itemvalue="CMake Application.roscpp_generate_messages_lisp" />
@@ -550,7 +441,14 @@
       <workItem from="1589940358177" duration="4514000" />
       <workItem from="1590127246948" duration="11978000" />
       <workItem from="1590139870079" duration="2942000" />
-      <workItem from="1590194399393" duration="13476000" />
+      <workItem from="1590194399393" duration="13734000" />
+      <workItem from="1590492764006" duration="595000" />
+      <workItem from="1590540081534" duration="609000" />
+      <workItem from="1590558964118" duration="4845000" />
+      <workItem from="1590565282093" duration="36000" />
+      <workItem from="1590566677370" duration="3118000" />
+      <workItem from="1590571954309" duration="382000" />
+      <workItem from="1590626357439" duration="732000" />
     </task>
     <servers />
   </component>

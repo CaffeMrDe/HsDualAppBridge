@@ -1,6 +1,6 @@
 
-#ifndef RB_UI_MAINWINDOW_H
-#define RB_UI_MAINWINDOW_H
+#ifndef rb_msgs_MAINWINDOW_H
+#define rb_msgs_MAINWINDOW_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -33,17 +33,16 @@
 #include "std_msgs/UInt8MultiArray.h"
 #include "std_msgs/UInt16MultiArray.h"
 #include "roscpp_tutorials/TwoInts.h"
-#include "rb_ui/rb_ArrayAndBool.h"
-#include "rb_ui/rb_DoubleBool.h"
-#include "rb_ui/robotConn.h"
-#include "rb_ui/robotError.h"
+#include "rb_msgs/rb_ArrayAndBool.h"
+#include "rb_msgs/rb_DoubleBool.h"
+#include "rb_msgs/robotConn.h"
+#include "rb_msgs/robotError.h"
 #include <opencv2/opencv.hpp>
 #include "sensor_msgs/Image.h"
 #include <cv_bridge/cv_bridge.h>
-#include <rb_ui/rb_ImageArray.h>
-#include "rb_msg/rbImageList.h"
+#include "rb_msgs/rbImageList.h"
 #include <qregion.h>
-#include <include/rb_ui/SetEnableSrv.h>
+#include "rb_msgs/SetEnableSrv.h"
 #include "logmanager.h"
 //#include "messagehandler.h"
 using namespace std;
@@ -134,7 +133,7 @@ private:
     void callback_rbConnStatus_subscriber(std_msgs::UInt8MultiArray data_msg);
     void callback_rbErrStatus_subscriber(std_msgs::UInt16MultiArray data_msg);
 //    void callback_camera_subscriber(const sensor_msgs::Image::ConstPtr &msg);
-    void callback_magicGetData_subscriber(rb_msg::rbImageList rbimageList);
+    void callback_magicGetData_subscriber(rb_msgs::rbImageList rbimageList);
     //线程处理
     void thread_rbConnCommand();
     void thread_BeginRun();
@@ -236,4 +235,4 @@ private:
 
 
 
-#endif //RB_UI_MAINWINDOW_H
+#endif //rb_msgs_MAINWINDOW_H

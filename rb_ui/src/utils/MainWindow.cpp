@@ -16,17 +16,17 @@ void MainWindow::SysVarInit() {
     //话题或服务对象初始化
     rbStopCommand_publisher= Node->advertise<std_msgs::Bool>("/Rb_stopCommand", 1000);
     SafetyStop_publisher=Node->advertise<std_msgs::Bool>("/Safety_stop", 1000);
-    rbConnCommand_client = Node->serviceClient<rb_ui::robotConn>("/Rb_connCommand");
-    rbSetEnable1_client = Node->serviceClient<rb_ui::SetEnableSrv>("/UR51/set_robot_enable");
-    rbSetEnable2_client = Node->serviceClient<rb_ui::SetEnableSrv>("/UR52/set_robot_enable");
-    rbErrStatus_client = Node->serviceClient<rb_ui::robotError>("/Rb_errStatus");
-    ImageGet_client = Node->serviceClient<rb_ui::rb_ImageArray>("/MagicCubeImage");
+    rbConnCommand_client = Node->serviceClient<rb_msgs::robotConn>("/Rb_connCommand");
+    rbSetEnable1_client = Node->serviceClient<rb_msgs::SetEnableSrv>("/UR51/set_robot_enable");
+    rbSetEnable2_client = Node->serviceClient<rb_msgs::SetEnableSrv>("/UR52/set_robot_enable");
+    rbErrStatus_client = Node->serviceClient<rb_msgs::robotError>("/Rb_errStatus");
+//    ImageGet_client = Node->serviceClient<rb_msgs::rbImageList>("/MagicCubeImage");
 //    camera_subscriber=Node->subscribe<sensor_msgs::Image>("/usb_cam/image_raw",1000,boost::bind(&MainWindow::callback_camera_subscriber, this, _1));
-    rbGrepSetCommand_client = Node->serviceClient<rb_ui::rb_ArrayAndBool>("/Rb_grepSetCommand");
-    rbRunCommand_client = Node->serviceClient<rb_ui::rb_DoubleBool>("/Rb_runCommand");
-    MagicGetDataCommand_client = Node->serviceClient<rb_ui::rb_DoubleBool>("/MagicGetDataCommand");
-    MagicSolveCommand_client= Node->serviceClient<rb_ui::rb_DoubleBool>("/MagicSolveCommand");
-    MagicRunSolveCommand_client = Node->serviceClient<rb_ui::rb_DoubleBool>("/MagicRunSolveCommand");
+    rbGrepSetCommand_client = Node->serviceClient<rb_msgs::rb_ArrayAndBool>("/Rb_grepSetCommand");
+    rbRunCommand_client = Node->serviceClient<rb_msgs::rb_DoubleBool>("/Rb_runCommand");
+    MagicGetDataCommand_client = Node->serviceClient<rb_msgs::rb_DoubleBool>("/MagicGetDataCommand");
+    MagicSolveCommand_client= Node->serviceClient<rb_msgs::rb_DoubleBool>("/MagicSolveCommand");
+    MagicRunSolveCommand_client = Node->serviceClient<rb_msgs::rb_DoubleBool>("/MagicRunSolveCommand");
 
     qRegisterMetaType<infoLevel>("infoLevel");//信号与槽连接自定义类型需要注册
     //线程句柄初始化
@@ -106,12 +106,12 @@ void MainWindow::dev_connect() {
 }
 //设备连接按钮中开辟的子线程程序-2
 void MainWindow::thread_rbConnCommand() {
-    rb_ui::robotConn data_srvs;
+    rb_msgs::robotConn data_srvs;
     if(rbConnCommand_client.call(data_srvs)){
         if(data_srvs.response.ret){
             flag_rbConnStatus= true;
-            label_rb1CoonStatus->setPixmap(QPixmap(QString::fromUtf8("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_ui/photo/light_green.png")));
-            label_rb2CoonStatus->setPixmap(QPixmap(QString::fromUtf8("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_ui/photo/light_green.png")));
+            label_rb1CoonStatus->setPixmap(QPixmap(QString::fromUtf8("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_msgs/photo/light_green.png")));
+            label_rb2CoonStatus->setPixmap(QPixmap(QString::fromUtf8("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_msgs/photo/light_green.png")));
         } else{
             LOG("Warning")->logErrorMessage("机器人连接失败!");
             emit thread_forRbConn->signal_SendMsgBox(infoLevel::warning,QString("机器人连接失败!"));
@@ -130,32 +130,34 @@ void MainWindow::run_statup() {
 }
 //运行启动按钮开启的子线程-2
 void MainWindow::thread_BeginRun() {
+    system("roslaunch co605_dual_arm_gripper_moveit_config demo.launch ");
+
     //1.机器人上使能
     //2.启动仕忠的launch文件
     //3.开辟线程监听机器人状态(故障状态)
-    rb_ui::SetEnableSrv data_srvs1;
-    rb_ui::SetEnableSrv data_srvs2;
-    data_srvs1.request.enable= true;
-    data_srvs2.request.enable= true;
-    if((rbSetEnable1_client.call(data_srvs1))&&(rbSetEnable2_client.call(data_srvs2))){
-        if(data_srvs1.response.finsh&&data_srvs2.response.finsh){
-            cout<<"机器人上使能成功"<<endl;
-        } else{
-            emit thread_forBeginRun->signal_SendMsgBox(infoLevel::warning,QString("rbConnCommand_client接收消息失败!"));
-        }
-    } else{
-        LOG("Warning")->logErrorMessage("rbRunCommand_client接收消息失败!");
-        emit thread_forBeginRun->signal_SendMsgBox(infoLevel::warning,QString("rbRunCommand_client接收消息失败!"));
-        return;
-    }
-    system("roslaunch rubik_cube_solve solve.launch");
-    //开辟监听故障状态子线程
-    thread_forLisionErrInfo->start();//转到监听故障状态子线程-3
+//    rb_msgs::SetEnableSrv data_srvs1;
+//    rb_msgs::SetEnableSrv data_srvs2;
+//    data_srvs1.request.enable= true;
+//    data_srvs2.request.enable= true;
+//    if((rbSetEnable1_client.call(data_srvs1))&&(rbSetEnable2_client.call(data_srvs2))){
+//        if(data_srvs1.response.finsh&&data_srvs2.response.finsh){
+//            cout<<"机器人上使能成功"<<endl;
+//        } else{
+//            emit thread_forBeginRun->signal_SendMsgBox(infoLevel::warning,QString("rbConnCommand_client接收消息失败!"));
+//        }
+//    } else{
+//        LOG("Warning")->logErrorMessage("rbRunCommand_client接收消息失败!");
+//        emit thread_forBeginRun->signal_SendMsgBox(infoLevel::warning,QString("rbRunCommand_client接收消息失败!"));
+//        return;
+//    }
+//    system("roslaunch rubik_cube_solve solve.launch");
+//    //开辟监听故障状态子线程
+//    thread_forLisionErrInfo->start();//转到监听故障状态子线程-3
 }
 //监听故障状态子线程-3
 void MainWindow::thread_LisionErrInfo() {
     //每隔一秒监听一次报警信息,并在机器人报警状态显示上刷新
-    rb_ui::robotError errorMsg;
+    rb_msgs::robotError errorMsg;
     while (!flag_rbErrStatus){
         sleep(1);
         if(rbErrStatus_client.call(errorMsg)){
@@ -176,15 +178,15 @@ void MainWindow::thread_LisionErrInfo() {
 
 //启动rviz
 void MainWindow::rviz_statup() {
-    QProcess* proc=new QProcess(this);
-    proc->start("rosrun rviz rviz");
+//    QProcess* proc=new QProcess(this);
+//    proc->start("rosrun rviz rviz");
 }
 
 //运行停止
 void MainWindow::run_stop() {
     cout<<"点击了运行停止按钮"<<endl;
-    rb_ui::SetEnableSrv data_srvs1;
-    rb_ui::SetEnableSrv data_srvs2;
+    rb_msgs::SetEnableSrv data_srvs1;
+    rb_msgs::SetEnableSrv data_srvs2;
     data_srvs1.request.enable= false;
     data_srvs2.request.enable= false;
     if((rbSetEnable1_client.call(data_srvs1))&&(rbSetEnable2_client.call(data_srvs2))){
@@ -205,17 +207,16 @@ void MainWindow::run_stop() {
 
 void MainWindow::magicCube_get() {
     cout<<"点击了采集魔方数据按钮"<<endl;
-//    thread_forGagicGetData->start();
-    magicGetData_subscriber=Node->subscribe<rb_msg::rbImageList>("/camera",1,&MainWindow::callback_magicGetData_subscriber,this);
+    thread_forGagicGetData->start();
 }
 
 void MainWindow::thread_GagicGetData() {
-    magicGetData_subscriber=Node->subscribe<rb_msg::rbImageList>("/camera",1,&MainWindow::callback_magicGetData_subscriber,this);
+    magicGetData_subscriber=Node->subscribe<rb_msgs::rbImageList>("/camera",1,&MainWindow::callback_magicGetData_subscriber,this);
 }
 
 //接收魔方数据
-void MainWindow::callback_magicGetData_subscriber(rb_msg::rbImageList rbimageList) {
-    rb_msg::rbImageList data_msg;
+void MainWindow::callback_magicGetData_subscriber(rb_msgs::rbImageList rbimageList) {
+    rb_msgs::rbImageList data_msg;
     cout<<"size"<<data_msg.imagelist.size()<<endl;
     data_msg.imagelist.reserve(6);
     for (int i = 0; i < 6; ++i) {
@@ -272,11 +273,11 @@ void MainWindow::callback_rbConnStatus_subscriber(std_msgs::UInt8MultiArray data
 void MainWindow::callback_rbErrStatus_subscriber(std_msgs::UInt16MultiArray data_msg) {
     sleep(1);
     if(data_msg.data[0]==1){
-        label_rb1ErrStatus->setPixmap(QPixmap(QString::fromUtf8("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_ui/photo/light_red.png")));
+        label_rb1ErrStatus->setPixmap(QPixmap(QString::fromUtf8("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_msgs/photo/light_red.png")));
         LOG("Robot")->logErrorMessage("机器人1故障");
     }
     if(data_msg.data[1]==1){
-        label_rb2ErrStatus->setPixmap(QPixmap(QString::fromUtf8("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_ui/photo/light_red.png")));
+        label_rb2ErrStatus->setPixmap(QPixmap(QString::fromUtf8("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_msgs/photo/light_red.png")));
         LOG("Robot")->logErrorMessage("机器人2故障");
     }
 }
@@ -328,7 +329,7 @@ void MainWindow::displayTextControl(QString text) {
 
 
 void MainWindow::thread_GagicSolve() {
-    rb_ui::rb_DoubleBool data_srvs;
+    rb_msgs::rb_DoubleBool data_srvs;
     data_srvs.request.request=true;
     if(MagicSolveCommand_client.call(data_srvs)){
         if(data_srvs.response.respond){
@@ -340,7 +341,7 @@ void MainWindow::thread_GagicSolve() {
 }
 
 void MainWindow::thread_GagicRunSolve() {
-    rb_ui::rb_DoubleBool data_srvs;
+    rb_msgs::rb_DoubleBool data_srvs;
     data_srvs.request.request=true;
     if(MagicRunSolveCommand_client.call(data_srvs)){
         if(data_srvs.response.respond){
@@ -353,11 +354,16 @@ void MainWindow::thread_GagicRunSolve() {
 }
 
 void MainWindow::thread_RbGrepSet() {
-    int index1=comboBox->currentIndex();
-    int index2=comboBox_2->currentIndex();
-    int index3=comboBox_3->currentIndex();
-    rb_ui::rb_ArrayAndBool data_msg;
-    data_msg.request.data.reserve(3);
+    int index1=comboBox_2->currentIndex();
+    int index2=comboBox_3->currentIndex();
+    int index3=comboBox->currentIndex();
+    cout<<index1<<"----"<<index2<<"----"<<index3<<endl;
+//    LOG("Warning")->logErrorMessage("rbGrepSetCommand_client接收消息失败!");
+//    int index1=comboBox->currentIndex();
+//    int index2=comboBox_2->currentIndex();
+//    int index3=comboBox_3->currentIndex();
+    rb_msgs::rb_ArrayAndBool data_msg;
+    data_msg.request.data.resize(3);
     data_msg.request.data[0]=index1;
     data_msg.request.data[1]=index2;
     data_msg.request.data[2]=index3;
@@ -421,7 +427,6 @@ QImage MainWindow::cvMat2QImage(const cv::Mat &mat) {
 }
 
 void MainWindow::showQmessageBox(infoLevel level,QString info) {
-    cout<<"触发了槽函数"<<endl;
     switch (level){
         case infoLevel ::information:
                 QMessageBox::information(this,"提示",info,QMessageBox::Ok);break;
@@ -436,7 +441,7 @@ void MainWindow::initUi(QMainWindow *MainWindow) {
 //    MainWindow->resize(967, 645);
 //    设置背景和背景颜色
 //    QImage _image;
-//    _image.load("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_ui/photo/a.jpg");
+//    _image.load("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_msgs/photo/a.jpg");
 //    setAutoFillBackground(true);   // 这个属性一定要设置
 //    QPalette pal(palette());
 ////    pal.setBrush(QPalette::Window, QBrush(_image.scaled(size(), Qt::IgnoreAspectRatio)));
@@ -467,7 +472,7 @@ void MainWindow::initUi(QMainWindow *MainWindow) {
     horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
     label_3 = new QLabel(centralWidget);
     label_3->setObjectName(QString::fromUtf8("label_3"));
-    label_3->setPixmap(QPixmap(QString::fromUtf8("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_ui/photo/logo.png")));
+    label_3->setPixmap(QPixmap(QString::fromUtf8("/home/wangneng/catkin_ws/src/HsDualAppBridge/rb_msgs/photo/logo.png")));
 
     horizontalLayout->addWidget(label_3);
 
@@ -882,12 +887,11 @@ void MainWindow::retranslateUi(QMainWindow *MainWindow) {
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "\351\255\224\346\226\271\347\225\214\351\235\242", nullptr));
         label_2->setText(QApplication::translate("MainWindow", "\345\233\276\345\203\217\346\230\276\347\244\272", nullptr));
         groupBox_setMod->setTitle(QApplication::translate("MainWindow", "\346\250\241\345\274\217\350\256\276\347\275\256", nullptr));
-        comboBox->setItemText(0, QApplication::translate("MainWindow", "\344\273\216\346\241\214\345\255\220\346\212\223,\346\224\276\350\264\247\346\236\266\344\270\212", nullptr));
-        comboBox->setItemText(1, QApplication::translate("MainWindow", "\344\273\216\350\264\247\346\236\266\346\212\223.\346\224\276\346\241\214\345\255\220\344\270\212", nullptr));
-
+        comboBox->setItemText(0, QApplication::translate("MainWindow", "从货架抓,放桌子上", nullptr));
+        comboBox->setItemText(1, QApplication::translate("MainWindow", "从桌子抓,放货架上", nullptr));
         groupBox_selectObject->setTitle(QApplication::translate("MainWindow", "\346\212\223\345\217\226\345\257\271\350\261\241", nullptr));
-        comboBox_2->setItemText(0, QApplication::translate("MainWindow", "\345\217\257\344\271\220\347\275\220", nullptr));
-        comboBox_2->setItemText(1, QApplication::translate("MainWindow", "\347\211\233\345\245\266\347\233\222", nullptr));
+        comboBox_2->setItemText(0, QApplication::translate("MainWindow", "牛奶盒", nullptr));
+        comboBox_2->setItemText(1, QApplication::translate("MainWindow", "可乐盒", nullptr));
 
         groupBox_selectRobot->setTitle(QApplication::translate("MainWindow", "\346\234\254\344\275\223\351\200\211\346\213\251", nullptr));
         comboBox_3->setItemText(0, QApplication::translate("MainWindow", "\345\267\246\346\234\272\345\231\250\344\272\272\346\212\223", nullptr));
