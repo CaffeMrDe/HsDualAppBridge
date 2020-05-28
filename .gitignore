@@ -21,3 +21,6 @@
 !**/*.txt
 !**/*.xml
 build/
+logWithQt/
+cubeParse/
+rubik_cube_solve/
