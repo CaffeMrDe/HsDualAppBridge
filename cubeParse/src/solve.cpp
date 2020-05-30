@@ -25,21 +25,19 @@ vector<int> Solve::operation()
       cubeSolve t;
 
       vector<char> color_answer_vector ( s.getResult() );
-      std::stringstream stream;
+      std::string str = "";
+
       //将颜色向量转换为颜色字符串
-      for(size_t i; i < color_answer_vector.size(); ++i)
-         stream << color_answer_vector[i];
-      //打印颜色字符串结果
-      std::string color_answer_string = stream.str();
-      
+      for(vector<char>::iterator i = color_answer_vector.begin(); i != color_answer_vector.end(); ++i)
+         str += *i;
+
       //打印检测
       //cout << "魔方颜色序列为: " << endl;
-      //cout << color_answer_string << endl;
+      cout << str << endl;
 
       //得到解算指令
-      vector<int> motion_answer( t.settlement( color_answer_string) );
+      vector<int> motion_answer( t.settlement(str) );
 
-      stream.str("");
       //返回指令
       return motion_answer;
 }
@@ -60,5 +58,4 @@ bool Solve::solvecube_server_Callback(cubeParse::SolveCube::Request &req, cubePa
     cout << "魔方解算指令发送完毕,请注意查收!" << endl;
     ros::Duration(1).sleep();
     
-    solution_pub.shutdown();
 }

@@ -42,7 +42,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   message_generation
 )
-
+  # rb_msgAndSrv
 find_package(OpenCV REQUIRED)
 
 ##   * add "message_runtime" and every package in MSG_DEP_SET to

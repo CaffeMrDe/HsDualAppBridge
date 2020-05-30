@@ -75,19 +75,23 @@ char* cubeSolve::ko_solve(std::string color_code)
 
 	//需要输入的字符串参数
 	PyObject* pParams = Py_BuildValue( "(s)", color_code.c_str() );
-	char* solution_result = NULL;
 
 	//调用函数
 	PyObject* pRet = PyObject_CallObject(pFunc, pParams);
+	
 
+	char* solution_result = NULL;
     PyArg_Parse(pRet, "s", &solution_result);
+
+	Py_XDECREF(pParams);
+	Py_XDECREF(pRet);
     
 	//输出结果
 	std::cout << "res: " << solution_result << std::endl; 
 
 	//释放python
 	Py_Finalize();
-
+	// delete[] solution_result;
     return solution_result;
 }
 

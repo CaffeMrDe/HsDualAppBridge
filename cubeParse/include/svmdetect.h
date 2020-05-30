@@ -23,6 +23,9 @@
 #include <cubeParse/TakePhoto.h>
 #include <cubeParse/Detection.h>
 
+#include "rb_msgAndSrv/rbImageList.h"
+
+
 using namespace std;
 using namespace cv;
 using namespace ml;
@@ -185,7 +188,8 @@ class svmDetect
         * @brief 图片订阅话题
         */
         image_transport::Subscriber Imgsub;
-        image_transport::Publisher Imgpub;
+        // image_transport::Publisher Imgpub;
+        ros::Publisher imglistPub;
         
         /**
         * @brief mNodeHandle   ROS节点

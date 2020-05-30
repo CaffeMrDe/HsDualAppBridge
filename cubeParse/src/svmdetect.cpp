@@ -12,6 +12,7 @@ svmDetect::svmDetect(NodeHandle n)
 	//初始化节点
     mNodeHandle = n;
 	fileNum = 0;
+	imglistPub = mNodeHandle.advertise<rb_msgAndSrv::rbImageList>("cube_image", 1);
 }
 
 svmDetect::~svmDetect()
@@ -551,20 +552,26 @@ bool svmDetect::detection_server_Callback(cubeParse::Detection::Request &req, cu
 
 	svmDetect::printResult();
 	image_transport::ImageTransport it(mNodeHandle);
-	Imgpub = it.advertise("cube_image", 1);
+	// Imgpub = it.advertise("cube_image", 1);
 	ros::Duration(0.5).sleep();
+	
 
+	rb_msgAndSrv::rbImageList imglist;
+	imglist.imagelist.resize(6);
 	for(int i = 0; i < 6; i++)
 	{
 		cv::Mat image = cv::imread(pathShow + to_string(i) + ".png", CV_LOAD_IMAGE_COLOR);
 		sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", image).toImageMsg();
-		Imgpub.publish(msg);
-		ros::Duration(0.5).sleep();
+		imglist.imagelist[i].data = msg->data;
 		cout << "图片" << i << "发送成功" << endl;
 	}
 
+	imglistPub.publish(imglist);
+	ros::Duration(0.5).sleep();
+
 	cout << "图片发送完毕，请注意接收" << endl;
-	Imgpub.shutdown();
+	// Imgpub.shutdown();
+	// imglistPub.shutdown();
     return true;
 }
 
