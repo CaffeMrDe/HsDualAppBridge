@@ -70,6 +70,7 @@ add_service_files(
     TakePhoto.srv
     Detection.srv
     SolveCube.srv
+    Correction.srv
   )
 
 ## Generate actions in the 'action' folder
@@ -257,10 +258,12 @@ add_executable(cube
   include/svmdetect.h
   include/cube_solve.h
   include/solve.h
+  include/correct.h
   src/color_detect.cpp
   src/svmdetect.cpp
   src/cube_solve.cpp
   src/solve.cpp
+  src/correct.cpp
 )
 
 add_dependencies(cube ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})

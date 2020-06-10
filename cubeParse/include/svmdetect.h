@@ -24,7 +24,7 @@
 #include <cubeParse/Detection.h>
 
 #include "rb_msgAndSrv/rbImageList.h"
-
+#include "rb_msgAndSrv/rb_StringArray.h"
 
 using namespace std;
 using namespace cv;
@@ -86,28 +86,23 @@ class svmDetect
         cv::Point find_central_point(cv::Mat img);
 
         /**
-        * @brief   点击鼠标事件回调函数，仅调试用，在图像返回坐标x,y
-        */
-        void onMouse(int event, int x, int y, int flags, void* prarm);
-        
-        /**
-        * @brief  进行颜色识别
-        * @param   img 需要进行颜色识别的图像
-        * @return  string:颜色，如red, yellow, blue, orange, green, white
-        */
+         * @brief  进行颜色识别
+         * @param   img 需要进行颜色识别的图像
+         * @return  string:颜色，如red, yellow, blue, orange, green, white
+         */
         std::string SVM_Color(cv::Mat img);
         
         /**
-        * @brief  进行颜色编码
-        * @param   color 需要识别的颜色,如red, yellow, blue, orange, green, white
-        * @return  char:颜色所对应的基准面编码，分别为U，D，F，B，L，R
-        */
+         * @brief  进行颜色编码
+         * @param   color 需要识别的颜色,如red, yellow, blue, orange, green, white
+         * @return  char:颜色所对应的基准面编码，分别为U，D，F，B，L，R
+         */
         char color_code(std::string color,  vector<char> facelet_label);
         
         /**
-        * @brief  进行魔方扭动基准面的确定
-        * @return  vector<char>:魔方基本面确定后的编码顺序，例如（ 'F', 'B', 'L', 'R', 'U', 'D'）
-        */
+         * @brief  进行魔方扭动基准面的确定
+         * @return  vector<char>:魔方基本面确定后的编码顺序，例如（ 'F', 'B', 'L', 'R', 'U', 'D'）
+         */
         vector<char> establish_benchmark();
 
         /**
@@ -190,6 +185,7 @@ class svmDetect
         image_transport::Subscriber Imgsub;
         // image_transport::Publisher Imgpub;
         ros::Publisher imglistPub;
+        ros::Publisher ColorPub;
         
         /**
         * @brief mNodeHandle   ROS节点
@@ -217,40 +213,45 @@ class svmDetect
         */
 
         //魔方前面参数
-        int Front_x1 = 207;
-        int Front_y1 = 121;
-        int Front_x2 = 448;
-        int Front_y2 = 359;
+        int Front_x1 = 220;
+        int Front_y1 = 190;
+        int Front_x2 = 400;
+        int Front_y2 = 364;
 
         //魔方背面参数
-        int Back_x1 = 169;
-        int Back_y1 = 105;
-        int Back_x2 = 448;
-        int Back_y2 = 381;
+        int Back_x1 = 203;
+        int Back_y1 = 164;
+        int Back_x2 = 406;
+        int Back_y2 = 363;
 
         //魔方左面参数
-        int Left_x1 = 223;
-        int Left_y1 = 164;
-        int Left_x2 = 445;
-        int Left_y2 = 382;
+        int Left_x1 = 171;
+        int Left_y1 = 153;
+        int Left_x2 = 423;
+        int Left_y2 = 402;
 
         //魔方右面参数
-        int Right_x1 = 275;
-        int Right_y1 = 229;
-        int Right_x2 = 496;
-        int Right_y2 = 442;
+        int Right_x1 = 263;
+        int Right_y1 = 208;
+        int Right_x2 = 466;
+        int Right_y2 = 413;
 
         //魔方顶面参数
-        int Up_x1 = 218;
-        int Up_y1 = 96;
-        int Up_x2 = 458;
-        int Up_y2 = 334;
+        int Up_x1 = 243;
+        int Up_y1 = 190;
+        int Up_x2 = 401;
+        int Up_y2 = 350;
 
         //魔方底面参数
-        int Down_x1 = 215;
-        int Down_y1 = 86;
-        int Down_x2 = 510;
-        int Down_y2 = 374;
+        int Down_x1 = 241;
+        int Down_y1 = 179;
+        int Down_x2 = 424;
+        int Down_y2 = 357;
+
+        /**
+         * @brief 魔方颜色向量vector<string>,修改颜色序列使用  
+         */
+        vector<std::string> color_collection;
 
 };
 

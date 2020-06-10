@@ -12,6 +12,7 @@ message_generation
  add_message_files(
    FILES
 rbImageList.msg
+rb_StringArray.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -22,6 +23,7 @@ rb_DoubleBool.srv
 robotConn.srv
 robotError.srv
 SetEnableSrv.srv
+rb_string.srv
  )
 
  generate_messages(

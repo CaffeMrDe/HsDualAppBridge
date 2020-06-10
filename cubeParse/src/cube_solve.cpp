@@ -22,12 +22,22 @@ vector<int>  cubeSolve::settlement(std::string c)
 {
     //cout << "解算魔方中..." << endl;
 	char* sss = cubeSolve::ko_solve(c);
-	vector<int> answer( cubeSolve::move_code(sss) );
+	vector<int> answer;
 
-	for ( size_t i = 0; i < answer.size(); ++i)
-	   cout << answer[i] << " ";
-    cout << endl;
-	cout << "解算输出完成！" << endl;
+    //解算失败的话只有一个值为18
+	if (strcmp(sss, "Fail") == 0)
+	   answer.assign(1, 18);
+
+	//解算成功则正常输出   
+	else
+	{
+	    answer.assign( cubeSolve::move_code(sss).begin(), cubeSolve::move_code(sss).end());
+		for ( size_t i = 0; i < answer.size(); ++i)
+	       cout << answer[i] << " ";
+        cout << endl;
+	    cout << "解算输出完成！" << endl;
+	}
+
 	return answer;
 }
 
@@ -87,7 +97,10 @@ char* cubeSolve::ko_solve(std::string color_code)
 	Py_XDECREF(pRet);
     
 	//输出结果
-	std::cout << "res: " << solution_result << std::endl; 
+	if (strcmp(solution_result, "Fail") == 0)
+	  cout << "解算失败" << endl;
+	else
+	  std::cout << "res: " << solution_result << std::endl; 
 
 	//释放python
 	Py_Finalize();

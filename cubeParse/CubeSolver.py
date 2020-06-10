@@ -5,9 +5,13 @@ import kociemba
 
 def solver(s):
    print ("calculating...")
-   answer = kociemba.solve(s)
-   print("calculate successfully!")
-   #print(answer)
+   try:
+        answer = kociemba.solve(s)
+        print("calculate successfully!")
+        #print(answer)
+   except:
+        print('calculate fail')
+        answer = 'Fail'
    return answer
 
 def hellos(s):

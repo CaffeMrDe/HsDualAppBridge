@@ -17,7 +17,7 @@ svmDetect::svmDetect(NodeHandle n)
 
 svmDetect::~svmDetect()
 {
-   
+  ColorPub.shutdown();  
 }
 
 void svmDetect::start()
@@ -25,6 +25,7 @@ void svmDetect::start()
     //发布服务
 	takephotoServer =  mNodeHandle.advertiseService(TAKE_PHOTO_SERVER_NAME, &svmDetect::takephoto_server_Callback, this);
 	detectionServer = mNodeHandle.advertiseService(DETECTION_SERVER_NAME, &svmDetect::detection_server_Callback, this);
+	ColorPub = mNodeHandle.advertise<rb_msgAndSrv::rb_StringArray>("changeColor", 100);
 }
 
 vector<char> svmDetect::getResult()
@@ -114,10 +115,19 @@ void svmDetect::printResult()
         
 		count++;
 		cout << endl;
+        
+		//发送颜色信息
+		rb_msgAndSrv::rb_StringArray color_data;
+		for (size_t t = 0; t< color_collection.size(); t++)
+		   color_data.data[t].data = color_collection[t];
+		ColorPub.publish(color_data);
+		ros::Duration(0.5).sleep();
+
+		//清空发送信息
+		vector<std::string>().swap(color_collection);
+
 	}
 }
-
-
 
 
 cv::Mat svmDetect::capture_cube(cv::Mat img, int x1, int y1, int x2, int y2)
@@ -234,12 +244,6 @@ cv::Point svmDetect::find_central_point(cv::Mat img)
 	return Point((x1 + x2) / 2, (y1 + y2) / 2);
 }
 
-
-void svmDetect::onMouse(int event, int x, int y, int flags, void* prarm)
-{
-    if(event == CV_EVENT_LBUTTONDOWN)
-      printf("%d, %d\n", x, y); 
-}
 
 
 //Function to detect the color type using SVM(Support Vector Machine)
@@ -459,14 +463,18 @@ void svmDetect::ProcessImage()
 		cv::Mat imgOriginal = cv::imread(pathCurrent + to_string(i) + ".png");
 
 		//旋转预处理
+		if (i == 0)
+			imgOriginal = imgRotate(imgOriginal, -1.0);
+		if (i == 1)
+			imgOriginal = imgRotate(imgOriginal, 1.0);
 		if (i == 2)
-			imgOriginal = imgRotate(imgOriginal, -2.0);
+			imgOriginal = imgRotate(imgOriginal, 0.0);
 		if (i == 3)
-			imgOriginal = imgRotate(imgOriginal, -5.0);
+			imgOriginal = imgRotate(imgOriginal, 3.0);
 		if (i == 4)
-			imgOriginal = imgRotate(imgOriginal, -2.0);
+			imgOriginal = imgRotate(imgOriginal, 1.0);
 		if (i == 5)
-			imgOriginal = imgRotate(imgOriginal, -3.0);
+			imgOriginal = imgRotate(imgOriginal, 1.5);
 		
 		cv::Mat imgCapture = capture_cube(imgOriginal, matrix[i][0], matrix[i][1], matrix[i][2], matrix[i][3]);
 		cv::resize(imgCapture, imgCapture, Size(600, 600), 0, 0, INTER_LINEAR);
@@ -475,7 +483,7 @@ void svmDetect::ProcessImage()
 		//二次旋转处理
 		if (i == 1 || i == 2 || i == 5)
 			imgCapture = imgRotate(imgCapture, 90.0);
-		if (i == 3 || i == 4)
+		if (i == 4)
 			imgCapture = imgRotate(imgCapture, -90.0);
 
 		//保存图片	
@@ -562,7 +570,14 @@ bool svmDetect::detection_server_Callback(cubeParse::Detection::Request &req, cu
 	{
 		cv::Mat image = cv::imread(pathShow + to_string(i) + ".png", CV_LOAD_IMAGE_COLOR);
 		sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", image).toImageMsg();
+		// image.size()
+		// msg->width = image.size;
+		// msg->height = image.size();
 		imglist.imagelist[i].data = msg->data;
+		imglist.imagelist[i].encoding="bgr8";
+		imglist.imagelist[i].height=image.rows;
+		imglist.imagelist[i].width=image.cols;
+		imglist.imagelist[i].step=image.step;
 		cout << "图片" << i << "发送成功" << endl;
 	}
 
