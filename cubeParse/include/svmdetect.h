@@ -203,50 +203,55 @@ class svmDetect
         /**
         * @brief 魔方照片文件路徑参数  
         */
-        std::string pathCurrent = "/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo/Original/cube_";
-        std::string pathSave = "/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo/Processed/cube_";
-        std::string pahtloadSvm = "/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/svm_color.xml";
-        std::string pathShow = "/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo/Show/cube";
+        std::string pathPkg;
+        std::string pathCurrent;
+        std::string pathSave;
+        std::string pahtloadSvm;
+        std::string pathShow;
+        // std::string pathCurrent = "/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo/Original/cube_";
+        // std::string pathSave = "/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo/Processed/cube_";
+        // std::string pahtloadSvm = "/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/svm_color.xml";
+        // std::string pathShow = "/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/photo/Show/cube";
 
         /**
         * @brief 魔方照片矩阵参数  
         */
 
         //魔方前面参数
-        int Front_x1 = 220;
-        int Front_y1 = 190;
-        int Front_x2 = 400;
-        int Front_y2 = 364;
+        int Front_x1 = 725;
+        int Front_y1 = 396;
+        int Front_x2 = 1118;
+        int Front_y2 = 781;
 
         //魔方背面参数
-        int Back_x1 = 203;
-        int Back_y1 = 164;
-        int Back_x2 = 406;
-        int Back_y2 = 363;
+        int Back_x1 = 695;
+        int Back_y1 = 356;
+        int Back_x2 = 1141;
+        int Back_y2 = 802;
 
         //魔方左面参数
-        int Left_x1 = 171;
-        int Left_y1 = 153;
-        int Left_x2 = 423;
-        int Left_y2 = 402;
+        int Left_x1 = 639;
+        int Left_y1 = 291;
+        int Left_x2 = 1228;
+        int Left_y2 = 884;
 
         //魔方右面参数
-        int Right_x1 = 263;
-        int Right_y1 = 208;
-        int Right_x2 = 466;
-        int Right_y2 = 413;
+        int Right_x1 = 811;
+        int Right_y1 = 433;
+        int Right_x2 = 1254;
+        int Right_y2 = 878;
 
         //魔方顶面参数
-        int Up_x1 = 243;
-        int Up_y1 = 190;
-        int Up_x2 = 401;
-        int Up_y2 = 350;
+        int Up_x1 = 781;
+        int Up_y1 = 416;
+        int Up_x2 = 1138;
+        int Up_y2 = 775;
 
         //魔方底面参数
-        int Down_x1 = 241;
-        int Down_y1 = 179;
-        int Down_x2 = 424;
-        int Down_y2 = 357;
+        int Down_x1 = 774;
+        int Down_y1 = 376;
+        int Down_x2 = 1161;
+        int Down_y2 = 772;
 
         /**
          * @brief 魔方颜色向量vector<string>,修改颜色序列使用  

@@ -10,7 +10,6 @@ Solve::~Solve()
 {
     solution_supervise_pub.shutdown();
     solution_pub.shutdown();
-
 }
 
 void Solve::start()
@@ -26,7 +25,7 @@ vector<int> Solve::operation()
 {
       //创建对象
       svmDetect s(nh);
-      cubeSolve t;
+      cubeSolve t(nh);
 
       vector<char> color_answer_vector ( s.getResult() );
       std::string str = "";
@@ -50,7 +49,7 @@ vector<int> Solve::reoperation(string c)
 {
     //创建对象
     correct h;
-    cubeSolve t;
+    cubeSolve t(nh);
 
     vector<char> color_answer_vector( h.getResult(c));
     string str = "";
@@ -105,6 +104,8 @@ bool Solve::solvecube_server_Callback(cubeParse::SolveCube::Request &req, cubePa
 bool Solve::correction_server_Callback(rb_msgAndSrv::rb_string::Request &req, rb_msgAndSrv::rb_string::Response &res)
 {
     string update_color_string = req.data.data;
+    cout << update_color_string << endl;
+    
     std_msgs::Int8MultiArray data;
 
     cout << "solving cube..."<< endl;

@@ -13,6 +13,7 @@
 #include <fstream>
 
 using namespace std;
+using namespace ros;
 
 class cubeSolve
 {
@@ -20,7 +21,7 @@ class cubeSolve
       /**
        * @brief   构造函数
        */
-      cubeSolve();
+      cubeSolve(NodeHandle n);
 
       /**
        * @brief   析构函数
@@ -49,6 +50,17 @@ class cubeSolve
        * @return  机器人执行动作的对应编码
        */
       vector<int> move_code(std::string solution);
+      
+      /**
+       * @brief   读取路径参数
+       */
+      string pathPkg;
+      string kocimPyPath;
+
+      /**
+       * @brief   ros节点
+       */
+      ros::NodeHandle mNodeHandle;
 
       
       

@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     svm.start();
 	s.start();
 	
-    cout << "Cube Robot Server Activated..." << endl;
+    cout << "Cube Robot Server Activating..." << endl;
 	cout << "You Can Call Service now!" << endl;
 
 	ros::waitForShutdown();

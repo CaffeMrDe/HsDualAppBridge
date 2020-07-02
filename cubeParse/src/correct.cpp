@@ -14,18 +14,27 @@ correct::~correct()
 vector<char> correct::getResult(string c)
 {
     //将string转为vector<char>
-    vector<char> update_color(c.size());
-    copy(c.begin(), c.end(), update_color.begin());
+    vector<char> update_color;
+    update_color.resize(c.size());
+    update_color.assign(c.begin(), c.end());
+    // cout << "打印接收信息" << endl;
+    // cout << update_color.size() << endl;
+    // for(size_t i = 0; i < update_color.size(); i++)
+    //    cout << update_color[i] << " ";
+    // cout << endl;
 
     //确定基准面信息
-    vector<char> live_benchmark(update_color);
-
+    vector<char> live_benchmark(correct::benchmark(update_color));
+  
+    //进行编码 
     vector<char> updata_color_code;
-    for(size_t  i = 0; i < update_color.size(); i++)
+    for(size_t i = 0; i < update_color.size(); i++)
     {
         char color_code = correct::color_code(update_color[i], live_benchmark);
         updata_color_code.push_back(color_code);
+        cout << color_code << " ";
     }
+    cout << endl;
 
     return updata_color_code;
 }
@@ -34,7 +43,7 @@ vector<char> correct::getResult(string c)
 vector<char> correct::benchmark(vector<char> c)
 {
     char facelet_label[6] = { 'R', 'U', 'D', 'L', 'F', 'B' };
-    char central_facelet[6] = { 4, 13, 22, 31, 40, 49};
+    int central_facelet[6] = {13, 4, 31, 40, 22, 49};
     char live_label[6];
     vector<char> live_facelet_label;
 
@@ -60,16 +69,22 @@ vector<char> correct::benchmark(vector<char> c)
           live_label[5] = facelet_label[i];
     }
 
+    cout << "基准面信息为:" << endl;
     //生成基准面序列向量
     for (int j = 0; j < 6; j++)
-	  live_facelet_label.push_back(live_label[j]);
-    
+    {
+       cout << facelet_label[j] << ":" <<  c[central_facelet[j]] << " ";
+       live_facelet_label.push_back(live_label[j]);
+    }
+	  cout << endl;
+
     //返回基准面序列向量
     return live_facelet_label;
 }
 
 char correct::color_code(char color,  vector<char> facelet_label)
 {
+
 	char facelets_color_code;
 
 	if (color == 'R')

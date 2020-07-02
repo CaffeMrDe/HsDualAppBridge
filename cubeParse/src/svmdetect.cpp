@@ -13,6 +13,12 @@ svmDetect::svmDetect(NodeHandle n)
     mNodeHandle = n;
 	fileNum = 0;
 	imglistPub = mNodeHandle.advertise<rb_msgAndSrv::rbImageList>("cube_image", 1);
+
+	mNodeHandle.getParam("/cubeParse/pathPkg", pathPkg);
+	pathCurrent = pathPkg + "/photo/Original/cube_";
+	pathSave = pathPkg + "/photo/Processed/cube_";
+	pahtloadSvm = pathPkg + "/svm_color.xml";
+	pathShow = pathPkg + "/photo/Show/cube";
 }
 
 svmDetect::~svmDetect()
@@ -22,7 +28,7 @@ svmDetect::~svmDetect()
 
 void svmDetect::start()
 {
-    //发布服务
+    //发布服务和话题
 	takephotoServer =  mNodeHandle.advertiseService(TAKE_PHOTO_SERVER_NAME, &svmDetect::takephoto_server_Callback, this);
 	detectionServer = mNodeHandle.advertiseService(DETECTION_SERVER_NAME, &svmDetect::detection_server_Callback, this);
 	ColorPub = mNodeHandle.advertise<rb_msgAndSrv::rb_StringArray>("changeColor", 100);
@@ -98,7 +104,8 @@ void svmDetect::printResult()
 
 				//使用SVM进行颜色识别
 				std::string color_result = svmDetect::SVM_Color(ROI);
-                
+				color_collection.push_back(color_result);
+				
 				//画展示图和进行图片颜色文本框输入
 				svmDetect::WriteText(img_cube, color_result, cv::Point(current_x, current_y));
 				svmDetect::filling_color(cube_model, color_result, current_draw_point);
@@ -108,25 +115,29 @@ void svmDetect::printResult()
 			}
 		}
         
-		//进行图拼接并保存最后的识别效果图
+		//进行图像拼接并保存最后的识别效果图
 		cv::hconcat(img_cube, cube_model, cube_real);
 		cv::imwrite(pathShow + to_string(num) + ".png", cube_real);
 		//cv::imwrite(pathShow + to_string(num) + ".png", cube_model);
         
 		count++;
 		cout << endl;
-        
-		//发送颜色信息
+
+	}
+
+	    //发送颜色信息
+		cout << "准备发送颜色信息" << endl;
 		rb_msgAndSrv::rb_StringArray color_data;
-		for (size_t t = 0; t< color_collection.size(); t++)
-		   color_data.data[t].data = color_collection[t];
+		color_data.data.resize(color_collection.size());
+
+		for (size_t t = 0; t < color_collection.size(); t++)
+			color_data.data[t].data = color_collection[t];
+
 		ColorPub.publish(color_data);
 		ros::Duration(0.5).sleep();
 
-		//清空发送信息
+	    //清空发送信息
 		vector<std::string>().swap(color_collection);
-
-	}
 }
 
 
@@ -167,12 +178,13 @@ vector<char> svmDetect::detection(cv::Mat img, vector<char> facelet_label)
             current_x = start_x + j * cube_interval;
             cv::Rect rect(current_x, current_y, ROI_inverval, ROI_inverval);
             cv::Mat ROI = img(rect);
-            //Use the SVM
+            //使用SVM进行颜色检测
 			std::string color_result = svmDetect::SVM_Color(ROI);
             result.push_back(svmDetect::color_code(color_result, facelet_label));
             k++;
         }
     }
+	//返回最后的颜色序列结果
     return result;
 }
 
@@ -271,7 +283,7 @@ std::string svmDetect::SVM_Color(cv::Mat img)
 	}
 	//使用训练好的SVM模型进行预测
 	model->predict(testDataMat, testLabelsMat);
-	//预测结果
+	//预测并返回结果
 	int testLabel = testLabelsMat.at<float>(0, 0);
 	string response = lableName[testLabel];
 	return response;
@@ -464,17 +476,17 @@ void svmDetect::ProcessImage()
 
 		//旋转预处理
 		if (i == 0)
-			imgOriginal = imgRotate(imgOriginal, -1.0);
+			imgOriginal = imgRotate(imgOriginal, -0.3);
 		if (i == 1)
-			imgOriginal = imgRotate(imgOriginal, 1.0);
+			imgOriginal = imgRotate(imgOriginal, -1.5);
 		if (i == 2)
 			imgOriginal = imgRotate(imgOriginal, 0.0);
 		if (i == 3)
-			imgOriginal = imgRotate(imgOriginal, 3.0);
+			imgOriginal = imgRotate(imgOriginal, -3.5);
 		if (i == 4)
-			imgOriginal = imgRotate(imgOriginal, 1.0);
+			imgOriginal = imgRotate(imgOriginal, 0.5);
 		if (i == 5)
-			imgOriginal = imgRotate(imgOriginal, 1.5);
+			imgOriginal = imgRotate(imgOriginal, 0.0);
 		
 		cv::Mat imgCapture = capture_cube(imgOriginal, matrix[i][0], matrix[i][1], matrix[i][2], matrix[i][3]);
 		cv::resize(imgCapture, imgCapture, Size(600, 600), 0, 0, INTER_LINEAR);

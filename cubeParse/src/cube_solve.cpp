@@ -8,9 +8,12 @@
 
 #include "cube_solve.h"
 
-cubeSolve::cubeSolve()
+cubeSolve::cubeSolve(NodeHandle n)
 {
 	//cout << "solving the cube......" << endl;
+	 mNodeHandle = n;
+	 mNodeHandle.getParam("/cubeParse/pathPkg", pathPkg);
+	 kocimPyPath = pathPkg;
 }
 
 cubeSolve::~cubeSolve()
@@ -22,23 +25,26 @@ vector<int>  cubeSolve::settlement(std::string c)
 {
     //cout << "解算魔方中..." << endl;
 	char* sss = cubeSolve::ko_solve(c);
-	vector<int> answer;
 
     //解算失败的话只有一个值为18
 	if (strcmp(sss, "Fail") == 0)
-	   answer.assign(1, 18);
-
+	{
+		vector<int> answer;
+		answer.assign(1, 18);
+		return answer;
+	}
+	   
 	//解算成功则正常输出   
 	else
 	{
-	    answer.assign( cubeSolve::move_code(sss).begin(), cubeSolve::move_code(sss).end());
+		vector<int> answer(cubeSolve::move_code(sss));
 		for ( size_t i = 0; i < answer.size(); ++i)
 	       cout << answer[i] << " ";
         cout << endl;
 	    cout << "解算输出完成！" << endl;
+		return answer;
 	}
 
-	return answer;
 }
 
 
@@ -56,7 +62,9 @@ char* cubeSolve::ko_solve(std::string color_code)
 
     //引入当前路径,否则下面模块不能正常导入
 	PyRun_SimpleString("import sys"); 
-    PyRun_SimpleString("sys.path.append('/home/de/catkin_ws/src/HsDualAppBridge/cubeParse/')"); //
+	const std::string path = "sys.path.append('" + kocimPyPath + "/')";
+    // PyRun_SimpleString("sys.path.append(kocimPyPath.c_str())"); 
+	PyRun_SimpleString(path.c_str()); 
     //PyRun_SimpleString("sys.path.append('/home/xiaohuihui/kociemba/kociemba-1.2')");
     //PyRun_SimpleString("print(sys.path)");
 
