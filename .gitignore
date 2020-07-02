@@ -4,6 +4,7 @@
 !*.cpp
 !*.cxx
 !*.c
+!*.txt
 !*.cc
 !*.hpp
 !*.h

@@ -7,3 +7,6 @@
 [submodule "grasp_place"]
 	path = grasp_place
 	url = https://github.com/StoneRobot/grasp_place.git
+[submodule "rb_ui"]
+	path = rb_ui
+	url = https://github.com/wangneng666/rb_ui.git
